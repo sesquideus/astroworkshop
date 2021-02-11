@@ -1,0 +1,63 @@
+\documentclass[a4paper]{report}
+
+\usepackage[
+    left    = 15mm,
+    right   = 15mm,
+    top     = 15mm,
+    bottom  = 15mm,
+]{geometry}
+
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx, tabu, ragged2e}
+\usepackage[MnSymbol]{mathspec}
+
+
+\setcounter{secnumdepth}{0}
+
+\setallmainfonts{Minion Pro}
+
+\pagestyle{empty}
+\renewcommand{\arraystretch}{1.5}
+\linespread{1.3}
+\aboverulesep=1.6ex
+\belowrulesep=1.6ex
+
+\setlist[description]{
+    font=\Large,
+    style=multiline,
+    leftmargin=20mm,
+}
+
+\titleformat{\section}[hang]{\Huge\centering\bfseries}{}{6pt}{}[]
+
+\begin{document}
+    (@ for participant in participants @)
+        \begin{minipage}{\textwidth}
+            \begin{minipage}{0.2\textwidth}
+                \includegraphics[width=32mm]{input/logo.jpg}
+            \end{minipage}
+            \begin{minipage}{0.58\textwidth}
+                \centering
+                \fontsize{40}{50}\selectfont
+                Astroworkshop\\
+                \Large
+                AGO Modra, (* days[0].date *) -- (* days[-1].date *)
+            \end{minipage}
+            \begin{minipage}{0.2\textwidth}
+                \includegraphics[width=32mm]{input/fmfi.png}
+            \end{minipage}
+        \end{minipage}
+        \vspace*{10mm}
+
+        This is to certify that \textbf{(* participant.name *) (* participant.surname *)} from (* participant.affiliation *)
+        attended the Astroworkshop of the Comenius University
+        which was organized in days 2020-03-05 -- 2020-03-08
+        at Astronomical and Geophysical Observatory in Modra-Piesok, Slovak republic.
+        (@ if not loop.last @)\newpage(@ endif @)
+    (@ endfor @)
+\end{document}
