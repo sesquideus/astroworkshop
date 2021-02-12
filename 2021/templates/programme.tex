@@ -38,7 +38,7 @@
 \begin{document}
     \begin{minipage}{\textwidth}
         \begin{minipage}{0.2\textwidth}
-            \includegraphics[width=32mm]{input/logo.jpg}
+            \includegraphics[width=32mm]{pictures/logo.jpg}
         \end{minipage}
         \begin{minipage}{0.58\textwidth}
             \centering
@@ -48,14 +48,14 @@
             (* place *), (* days[0].date *) -- (* days[-1].date *)
         \end{minipage}
         \begin{minipage}{0.2\textwidth}
-            \includegraphics[width=32mm]{input/fmfi.png}
+            \includegraphics[width=32mm]{pictures/fmfi.png}
         \end{minipage}
     \end{minipage}
     \vspace*{10mm}
 
     \textbf{Organizátori}:
     \begin{itemize}[itemsep=-2mm]
-    (@ for part in participants @)
+    (@ for part in participants|sort(attribute='surname') @)
         (@ if part.org @)
             \item (* part.name *) (* part.surname *)
         (@ endif @)

@@ -9,68 +9,68 @@ participants:
         surname:        Baláž
         org:            True
         present:        True
-        affiliation:    "FMFI UK"
+        affiliation:    *fmfi
     - &patrik_cechvala
         name:           Patrik
         surname:        Čechvala
         org:            True
         present:        True
-        affiliation:    "FMFI UK"
+        affiliation:    *fmfi
     - &karol_havrila
         name:           Karol
         surname:        Havrila
         org:            True
         present:        True
-        affiliation:    "FMFI UK"
+        affiliation:    *fmfi
     - &martina_kovacova
         name:           Martina
         surname:        Kováčová
         org:            True
         present:        True
-        affiliation:    "FMFI UK"
+        affiliation:    *fmfi
     - &emil_puha
         name:           Emil
         surname:        Puha
         org:            True
         present:        False
-        affiliation:    "FMFI UK"
+        affiliation:    *fmfi
     - &matej_zigo
         name:           Matej
         surname:        Zigo
         org:            True
         present:        False
-        affiliation:    "FMFI UK"
+        affiliation:    *fmfi
     - &adriana_pisarcikova
         name:           Adriana
         surname:        Pisarčíková
         org:            True
         present:        False
-        affiliation:    "FMFI UK"
+        affiliation:    *fmfi
     - &peter_jevcak
         name:           Peter
         surname:        Jevčák
         org:            True
         present:        True
-        affiliation:    "FMFI UK"
+        affiliation:    *fmfi
 
     - &roman_nagy
         name:           Roman
         surname:        Nagy
         org:            False
         present:        True
-        affiliation:    "FMFI UK"
+        affiliation:    *fmfi
     - &juraj_toth
         name:           Juraj
         surname:        Tóth
         org:            False
         present:        True
-        affiliation:    "FMFI UK"
+        affiliation:    *fmfi
     - &pavol_matlovic
         name:           Pavol
         surname:        Matlovič
         org:            False
         present:        True
-        affiliation:    "FMFI UK"
+        affiliation:    *fmfi
     - &simon_mackovjak
         name:           Šimon
         surname:        Mackovjak
@@ -94,32 +94,32 @@ participants:
         surname:        Šilha
         org:            False
         present:        True
-        affiliation:    "FMFI UK"
+        affiliation:    *fmfi
 
     - &michal_sturc
         name:           Michal
         surname:        Šturc
         org:            False
         present:        True
-        affiliation:    "FMFI UK"
+        affiliation:    *fmfi
     - &danica_zilkova
         name:           Danica
         surname:        Žilková
         org:            False
         present:        True
-        affiliation:    "FMFI UK"
+        affiliation:    *fmfi
     - &daniela_bartkova
         name:           Daniela
         surname:        Bartková
         org:            False
         present:        True
-        affiliation:    "FMFI UK"
-    - &jkosvanec
+        affiliation:    *fmfi
+    - &jakub_kosvanec
         name:           Jakub
         surname:        Košvanec
         org:            False
         present:        True
-        affiliation:    "FMFI UK"
+        affiliation:    *fmfi
     - &sdurisova
         name:           Silvia
         surname:        Ďurišová
@@ -144,20 +144,14 @@ participants:
         org:            False
         present:        True
         affiliation:    "FMFI UK"
-    - &mdluhy
-        name:           Marián
-        surname:        Dluhý
-        org:            False
-        present:        True
-        affiliation:    "FMFI UK"
 
-    - &zchrobakova
+    - &zofia_chrobakova
         name:           Žofia
         surname:        Chrobáková
         org:            False
         present:        True
         affiliation:    "Instituto de Astrofisica Canarías"
-    - &lzsilinszka
+    - &lucia_zsilinszka
         name:           Lucia
         surname:        Zsilinszká
         org:            False
@@ -169,37 +163,23 @@ participants:
         org:            False
         present:        True
         affiliation:    "Astronomický ústav AV ČR Ondřejov"
-    - &jnovakova
+    - &justina_novakova
         name:           Justína
         surname:        Nováková
         org:            False
         present:        True
         affiliation:    "PriF UK"
 
-    - &mcmaimone
-        name:           Maria Chiara
-        surname:        Maimone
-        org:            False
-        present:        False
-        affiliation:    "Côte d’Azur observatory"
-    - &pmassana
-        name:           Pol
-        surname:        Massana
-        org:            False
-        present:        False
-        affiliation:    "University of Surrey"
-    - &jkubica
-        name:           Juraj
-        surname:        Kubica
-        org:            False
-        present:        True
-        affiliation:    "Slovenské planetáriá"
-    - &jbudaj
+    - &jan_budaj
         name:           Ján
         surname:        Budaj
-    - &jbudaj
-        name:           Ján
-        surname:        Budaj
+        org:            False
+        affiliation:    "Astronomický ústav SAV"
+    - &pedro_russo
+        name:           Pedro
+        surname:        Russo
+        org:            False
+        affiliation:    "???"
 
 talks:
     - &cechvala
@@ -207,223 +187,7 @@ talks:
         title:          "Dojmy z konferencie AstroEdu v Garchingu"
         length:         30
         abstract:       >
-            16.--18. septembra 2019 sa konala v Garchingu pri Mníchove konferencia zameraná na vyučovanie a popularizáciu astronómie
-            organizovaná Medzinárodnou astronomickou úniou IAU. Konferencia sa odohrávala v návštevníckom centre Európskeho južného
-            observatória ESO Supernova. Na tejto konferencii sme prezentovali príspevok, ktorý vznikol v spolupráci s doktorandkami
-            z Katedry didaktiky. Ukážeme si niektoré zaujímavosti z tejto konferencie. Špeciálne sa budeme venovať samotnému návšteníckemu
-            centru ESO Supernova, ktoré pozostáva z planetária a výstavných plôch.
-
-    - &subjak
-        author:         *jan_subjak
-        title:          "Prvý hnedý trpaslík z vesmírnej misie TESS objavený v Ondřejove"
-        abstract:       >
-            V súčasnosti sú známe približne dve desiatky tranzitujúcich hnedých
-            trpaslíkov s presne zmeranou hmotnosťou a polomerom.
-            K nim sa nedávno pridal systém TOI-503 a pár ďalších čerstvo objavených
-            systémov z vesmírnej misie TESS a potvrdených dodatočnou spektroskopiou.
-            Napriek úspechom tejto misie však ostávame limitovaný pri štúdiu a pochopení
-            populácie hnedých trpaslíkov vzhľadom na malý počet jej objavených členov a každý nový člen
-            sa stáva testom pre súčasné modely a poznatky.
-            TOI-503 je prvý hnedý trpaslík z vesmírnej misie TESS a vôbec prvý v okolí hviezdy
-            spektrálneho typu Am. Podrobne sme analyzovali získané fotometrické a spektroskopické
-            dáta pre tento systém a charakterizovali jeho parametre, ako aj možné spôsoby formovania.
-
-    - &zilkova
-        author:         *danica_zilkova
-        title:          "Optimisation of double-station balloon flights for meteor observation: Prediction of the MALBEC nacelle trajectory"
-        affiliation:    "FMFI UK"
-        abstract:       >
-            The “Meteor Automated Light Balloon Experimental Camera” (MALBEC) project aims at the
-            observation of meteors from stratospheric altitude. The advantage is mainly to guarantee
-            the success of an observation run of a meteor shower, even in presence of clouds.
-            In order to fully exploit the scientific potential of a meteor observation
-            (e.g. derive the internal structure and origin via the measure of tensile strength
-            and orbit), double-station setup is required. The consequence for MALBEC is the
-            necessity of stabilisation and we show that a 3-axis stabilisation is necessary.
-            In addition, the two stations must be separated by a distance ranging from
-            \textasciitilde\SIrange{40}{110}{\kilo\metre}, and the cameras must point
-            towards the same portion of atmosphere. We show that under usual circumstances,
-            double station stratospheric observation is possible since the distance and the
-            azimuth between the two balloons (experiencing different atmospheric conditions)
-            varies in small proportions. Under usual slow wind conditions, the distance between
-            the stations varies by a few km and the elevation of the azimuth and elevation
-            of the cameras needed to observe the same portion of atmosphere varies by a few deg only.
-            In order to demonstrate the feasibility of stratospheric
-            double station meteor observation we developed a tool to simulate the flight and predict the
-            trajectory of the MALBEC nacelle. This will be further illustrated in the upcoming presentation.
-
-    - &balaz
-        author:         *martin_balaz
-        title:          "Kerbal Space Program"
-        length:         30
-        affiliation:    "FMFI UK"
-        abstract:       >
-            Kerbal Space Program is one of the most successful realistic space program simulation games.
-            Apart from entertainment, it is very useful in teaching and intuitively understanding
-            basic concepts of orbital mechanics, rocket construction and space mission design.
-
-    - &zigo
-        author:         *matej_zigo
-        title:          "Basics of debris observation"
-        length:         20
-        abstract:       >
-            Do you know what space debris is? Do you know how many debris pieces are out there?
-            Do you know the differences between asteroid and space debris observation?
-            Do you think that the trails on astronomic picture can only waste all the information on the image?
-            Here in this presentation, will be summarized the basics of the space debris research and the general
-            difficulties of capturing and processing of the data. We will talk about the necessary monitoring of these fragments,
-            why we should study something, which was originally created by us and how the growing space debris population can cause the death of George Clooney.
-
-    - &puha
-        author:         *emil_puha
-        title:          "The Hitchhiker's Guide to Astronomical Databases"
-        length:         30
-        abstract:       >
-            A brief presentation about the most extensive and open-access astronomical databases Simbad and Vizier.
-            We will show their basic handling such as executing table queries and table crossmatches.
-            Moreover, we'll introduce the desktop application Topcat -- a table processing tool, capable to directly connect
-            and download the necessary data from online databases. Finally, we will mention some nice Python libraries,
-            which allow you to perform all of the mentioned tasks from your own code.
-
-    - &havrila
-        author:         *karol_havrila
-        title:          "Astronomický Geocaching"
-        length:         30
-        workshop:       True
-        abstract:       >
-            Mnohí to poznáte: spojenie príjemného s užitočným prináša svoje čaro. A práve toto spojenie príjemného
-            (pohyb mestských uličkách a v prírode) s užitočným (spoznávanie svojho okolia v kombinácii s logikou)
-            prináša obľúbená celosvetová terénna hra, Geocaching. Cieľom hry je na základe vyriešených hádaniek,
-            logických úloh v teréne a všestranných indícii získať súradnice miesta, kde je schovaná tzv. „keška“.
-            V našich mestách a okolí sú stovky kešiek, ktoré prinášajú nie len zábavu z hrania, ale aj spoznávanie svojho okolia,
-            jeho histórie a známych osobností, ktoré sú s danou oblasťou spojené.
-            Okrem základných informácii o tom, ako funguje Geocaching, si hľadanie kešky vyskúšame priamo v teréne.
-            Aby to nebolo také jednoduché, súradnice miesta budú ukryté v astronómii a astrofyzike.
-            Pre nálezcov bude v keške ukryté malé prekvapenie.
-
-    - &chrobakova
-        author:         *zchrobakova
-        title:          "Structure of the outer Galactic disk"
-        abstract:       >
-            The structure of the outer disk of our Galaxy is still not well described and there are many
-            features that need to be better understood. Gaia DR2 provides data in unprecedented quality
-            that can be analyzed to shed some light on the outermost parts of the Milky Way.
-            We calculated stellar density using star counts obtained from Gaia DR2, up to galactocentric
-            distance $R$ = 20 kpc using a deconvolution technique in the parallax errors.
-            To recover star counts, we carry out the deconvolution, using the Lucy's inversion method
-            of the Fredholm integral equations of the first kind, without assuming any prior.
-            We analyzed the density in order to study the structure of the outer Galactic disk and
-            created density maps, where we can see structural features, mainly the warp.
-            We studied the warp in greater detail, fitting it with multiple models and analyzing its properties.
-            When we study the northern and the southern warps separately, we get an asymmetry of
-            \textasciitilde\SI{25}{\percent} larger amplitude in the north. We also study the flare -- the increase of the
-            scale-height with galactocentric distance. We will show preliminary results of our analysis,
-            which shed some light on possibility of flaring of the Galactic disk in the remote regions of the Galaxy.
-
-    - &maimone
-        author:         *mcmaimone
-        title:          "Star And Planet’s Characterisation Through High Spectral Resolution"
-        length:         20
-        day:            3
-        tele:           True
-        abstract:   >
-            With thousands of confirmed exoplanets and an increasing number of dedicated instruments, we are finally moving into an era where we can
-            address fundamental questions concerning the diversity of their compositions, their atmospheric and interior processes,
-            and their formation histories. How? Via their observable spectroscopic signatures.
-            In the last decade, tremendous progress has been made in detecting and characterising atmospheric signatures of exoplanets
-            through spectroscopic methods, allowing to unveil the composition for a dozen of them (Birkby, 2018).
-            Nevertheless these extraordinary results, we are only at the beginning: stellar and planetary models are still computed separately,
-            and 1D models, largely used for the stars until now, do not reproduce the complexity of convection mechanism (Chiavassa \& Brogi, 2019).
-            Our work could be the turning point: we aims at upgrading the already-in-place 3D radiative transfer code Optim3D
-            (Chiavassa et al. 2009) -- largely used for stellar purposes so far -- to taking into account also the exoplanetary contribution.
-            We propose to use simultaneously 3D Radiative Hydrodynamical simulations, performed for stars,
-            and the innovative Global Climate Model (GCM), drawn up for exoplanets, in order to generate unprecedented precise synthetic spectra.
-            As springboard to test the code, the analysis of CO and $\mathrm{H}_2\mathrm{O}$
-            molecules will be carried out on the well-know benchmark HD189733.
-            Indeed, one of the most challenging problems is to disentangle star’s and its companion’s signals due to the same molecules.
-            Hence, a complete dynamic characterisation is crucial: on one side, a precise knowledge of the stellar dynamic
-            (i.e. convection-related surface structures) would allow to extract unequivocally the planetary signal; on the other one,
-            a well-modelled dynamic of the planet (i.e. depth, shape, and position of spectral lines) would
-            provide us with considerable information about the planetary atmospheric circulation.
-
-    - &simon
-        author:         *jaro_simon
-        title:          "Inštalácia AMOSov ++"
-        length:         60
-        affiliation:    "AGO Modra"
-        abstract:       >
-           Celooblohový systém na pozorovanie meteorov AMOS sa v súčasnosti okrem Slovenska nachádza aj na viacerých vyznamných
-           observatoriách vo svete. Na prednáške si ukážeme zaujimavé fotografie z miest, kde je nainštalovaný,
-           a porozprávame si o zážitkoch pri inštaláciách.
-
-    - &toth
-        author:         *juraj_toth
-        title:          "Expedícia Hawaii 2020"
-        length:         30
-        day:            1
-
-    - &massana
-        author:         *pmassana
-        title:          "The diet of galaxies"
-        length:         20
-        tele:           True
-        abstract:       >
-            Galaxies are gigantic complex structures and understanding how they are formed and
-            evolve is a difficult matter. But one thing we do know, they feed from each other.
-            Under the current paradigm of galaxy evolution, big galaxies have grown by assimilating
-            smaller galaxies. These kind of events usually produce the most astonishingly
-            beautiful images that can be taken with telescopes. But what is really happening when two galaxies collide?
-            Is there really any violence involved at all? Should we be worried that our galaxy will be eaten as well?
-            In these talk we will answer all these questions and learn about the latest developments in our understanding of galaxies.
-
-    - &veres
-        author:         *peter_veres
-        title:          "Minor Planet Center (MPC)"
-        length:         20
-        tele:           True
-        abstract:       >
-            MPC je celosvetové stredisko, ktoré prijíma astrometriu asteroidov a komét z celého sveta, počíta a zverejňuje ich dráhy
-            a poskytuje služby ako efemeridy a online publikácie pozorovaní a dráh, ako aj registráciu observatórií.
-            MPC je už niekoľko rokov financované NASA a za posledné roky prebehlo veľkými personálnymi aj štrukturálnymi zmenami.
-            Jeho úloha je v súčasnosti zameraná najmä na podporu hľadania blízkozemských asteroidov a real-time služby a spracovanie dát.
-            Jednou z úloh, ktoré MPC rieši, je identifikácia a spájanie pozorovaní do spoločných dráh. O tom, koľko dráh má viacero označení,
-            že označenia podliehajú neustálym zmenám a ako sa určuje objaviteľ asteroidu a ako sa dá pomýliť kozmické smetie s asteroidom,
-            porozpráva Peter Vereš z Harvard-Smithsonian Center for Astrophysics, z oddelenia MPC.
-
-    - &mackovjak
-        author:         *simon_mackovjak
-        title:          "Výskum airglowu na Slovensku"
-        length:         20
-        tele:           True
-
-    - &sturc
-        author:         *michal_sturc
-        title:          "Migrácia Slnka a viacrozmerné grafy"
-        length:         30
-        abstract:       >
-            Migrácia Slnka v Galaxii je zaujímavá (aspoň pre mňa) kvôli chemickému zloženiu planét
-            a následne kvôli podmienkam pre vznik života. Keďže fázový priestor v dvojrozmernom modeli Galaxie je
-            štvorrozmerný, tak budeme potrebovať netradičné spôsoby zobrazenia dát.
-            Ukážeme si teda zobrazovanie pomocou rovnobežných osí.
-
-    - &novakova
-        author:         *jnovakova
-        title:          "Kozmochémia v praxi"
-        length:         30
-        abstract:       >
-            Kozmochémia prepája astronómiu, mineralógiu, petrológiu a chémiu pri štúdiu mimozemských materiálov.
-            V súčasnosti najrýchlejšie napredujúcou analytickou metódou v tomto odvetví je hmotnostná spektrometria,
-            ktorá je v rôznych podobách vhodná na vysokocitlivú analýzu chemického zloženia v podstate ľubovoľného materiálu.
-            Táto prednáška bude venovaná predstaveniu hmotnostných spektrometrov, ktoré sú najvhodnejšie na analýzu meteoritov
-            a porovnaniu ich špecifických prínosov.
-
-    - &planetaria
-        author:         *jkubica
-        title:          "Popularizácia astronómie cez občianske združenie Slovenské planetáriá"
-        length:         60
-        abstract:       >
-            Aký je stav popularizácie prírodných vied na Slovensku a ako sa v tom angažuje občianske združenie
-            Slovenské planetáriá, ktoré sa zasadzuje za výstavbu prvého planetária v Bratislavskom kraji.
+            Abstrakty-abstrakty.
 
 workshops:
     - &silha
@@ -431,28 +195,8 @@ workshops:
         title:          "???"
         workshop:       True
         abstract:       >
-            ???
+            Abstrakty-abstrakty.
 
-    - &telescopes
-        author:         [*patrik_cechvala, *karol_havrila]
-        affiliation:    "FMFI UK"
-        title:          "Ako s ďalekohľadom? -- praktické ukážky"
-        workshop:       True
-        abstract:       >
-            Prax nás naučila, že v súčasnosti študenti nemajú veľké znalosti o práci s astronomickým ďalekohľadom.
-            Tento workshop bude zameraný na zoznámanie sa s tým, ako správne rozložiť prenosný ďalekohľad,
-            nastaviť ho a ako prebieha pozorovanie s takýmto ďalekohľadom.
-            Tieto zručnosti sa častokrát hodia pri verejných pozorovaniach, no mali by patriť
-            k základnej výbave každého správneho astronóma.
-
-    - &ladder
-        author:         [*martin_balaz, *patrik_cechvala, *karol_havrila, *roman_nagy]
-        affiliation:    "FMFI UK"
-        title:          "Kozmický rebrík"
-        length:         120
-        workshop:       True
-        abstract:       >
-            Na tomto workshope si hravou formou ukážeme, akými spôsobmi sa dajú merať vzdialenosti v kozme.
 
 extras:
     - &breakfast
@@ -472,7 +216,7 @@ days:
     -   title:
             "štvrtok"
         date:
-            "2020-03-05"
+            "2021-03-04"
         blocks:
             "18:00":
                 title:  "Otvorenie 7. ročníka ASTRO workshopu"
@@ -486,12 +230,9 @@ days:
             "20:00":    *supper
 
     -   title:
-            "nedeľa"
+            "piatok"
         date:
-            "2020-03-08"
+            "2021-03-05"
         blocks:
             "09:00":    *breakfast
 
-            "10:00":    *maimone
-            "10:30":    *puha
-            "11:00":    *zigo
