@@ -1,9 +1,9 @@
 from django.db import models
 
 
-class Talk(models.Model):
+class Slot(models.Model):
     class Meta:
-        ordering = ['start', 'speaker']
+        ordering = ['start', 'person']
 
     CATEGORY_TALK = 'T'
     CATEGORY_WORKSHOP = 'W'
@@ -21,9 +21,9 @@ class Talk(models.Model):
     abstract = models.TextField(null=True, blank=True, max_length=4096)
     start = models.DateTimeField(null=True, blank=True, unique=True)
     duration = models.PositiveIntegerField(null=False)
-    speaker = models.ForeignKey('Participant', on_delete=models.CASCADE)
+    person = models.ForeignKey('Participant', on_delete=models.CASCADE, null=True, blank=True)
     event = models.ForeignKey('Event', null=True, blank=True, on_delete=models.CASCADE)
     category = models.CharField(max_length=1, choices=CATEGORIES, default=CATEGORY_TALK)
 
     def __str__(self):
-        return f"{self.speaker}: {self.title} ({self.start})"
+        return f"{self.person}: {self.title} ({self.start})"

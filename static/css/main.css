@@ -1,0 +1,109 @@
+html {
+    width: 100%;
+    font-family: "Segoe UI", "Verdana", sans-serif;
+    padding: 0px;
+}
+
+body {
+    height: 100%;
+    margin: 0px;
+}
+
+div.header {
+    height: 16mm;
+    padding: 12px 20px;
+    background-color: hsl(320, 100%, 50%);
+}
+
+div.header div.title {
+    display: inline-block;
+    float: left;
+    width: 30%;
+}
+
+div.header h1 {
+    margin: 0px 0px 3px 0px;
+}
+
+div.header ul {
+    height: 100%;
+    display: block;
+    float: left;
+    padding: 8px;
+    list-style-type: none;
+    list-style-position: outside;
+}
+
+div.header ul li {
+    display: block;
+    width: auto;
+    height: 100%;
+    float: left;
+    vertical-align: baseline;
+}
+
+div.header a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 130%;
+    color: black;
+}
+
+div.header a:visited {
+    color: black;
+}
+
+div.entire {
+    margin: auto;
+    max-width: 1250px;
+    background-color: hsl(0, 20%, 95%);
+}
+
+div.page {
+    padding: 7mm;
+}
+
+h1 {
+    font-size: 200%;
+}
+
+h2 {
+    font-size: 200%;
+    font-weight: 500;
+    padding-bottom: 8mm;
+}
+
+span.author {
+    font-size: 130%;
+    font-style: italic;
+    padding-bottom: 5mm;
+}
+
+p {
+    line-height: 1.5;
+}
+
+table {
+    background-color: hsl(0, 50%, 90%);
+    border: 0px;
+}
+
+table th.day {
+    font-size: 160%;
+    background-color: hsl(290, 50%, 30%);
+    color: white;
+    padding: 5px 0px 8px;
+    border: 0px;
+}
+
+table tr {
+    padding: 0px 0px;
+}
+
+table td {
+    padding: 4mm;
+}
+
+table td.time, table td.person {
+    white-space: nowrap;
+}

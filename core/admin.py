@@ -18,9 +18,11 @@ class ParticipantAdmin(admin.ModelAdmin):
     inlines = [AffiliationInline]
 
 
-@admin.register(core.models.Talk)
-class TalkAdmin(admin.ModelAdmin):
-    pass
+@admin.register(core.models.Slot)
+class SlotAdmin(admin.ModelAdmin):
+    ordering = ['start']
+
+    list_display = ['title', 'person', 'start']
 
 @admin.register(core.models.Participation)
 class ParticipationAdmin(admin.ModelAdmin):

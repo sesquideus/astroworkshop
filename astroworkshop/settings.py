@@ -25,7 +25,7 @@ SECRET_KEY = 'is-nf+(b84vzjv+&vn=x#59628jl=iphewblswo!d7-6jyt*fm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.153.128']
+ALLOWED_HOSTS = ['192.168.153.128', '192.168.248.128']
 
 
 # Application definition
@@ -105,13 +105,13 @@ AUTH_USER_MODEL = 'core.Participant'
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'sk-SK'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
@@ -120,3 +120,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
+DATETIME_FORMAT = 'Y-m-d H:i:s'
+DATETIME_INPUT_FORMATS = [
+    '%Y-%m-%d %H:%M:%S',
+    '%Y-%m-%d %H:%M',
+]
+DATE_FORMAT = 'Y-m-d'
+DATE_INPUT_FORMATS = ['%Y-%m-%d']

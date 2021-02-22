@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% load astro %}
+
+{% block page %}
+    </h2>
+    <h2>
+        {{ slot.title }}
+    </h2>
+    <span class="author">
+        {{ slot.person }}
+    </span>
+    <span class="time">
+        {{ slot.start|date:"l H:i" }}&nbsp;&ndash;&nbsp;{{ slot.start|add_minutes:slot.duration|time:"H:i" }}
+    </span>
+    <p>
+        {{ slot.abstract }}
+    </p>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="sk">
+    <head>
+        <meta name="description" content="Astroworkshop" />
+        <meta name="keywords" content="astronomy, workshop, FMPH" />
+        <meta name="author" content="Martin Baláž" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1" />
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <title>
+            Astroworkshop
+        </title>
+        <link rel="stylesheet" type="text/css" href="{% static "css/reset.css" %}" />
+        <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}" />
+        <link rel="icon" type="image/png" href="{% static "icon.png" %}" />
+        {% block headextra %}{% endblock %}
+    </head>
+    <body>
+        <div class="entire">
+            {% include 'core/header.html' %}
+            <div class="page">
+                <div class="titlebar">
+                    {% block pagetitle %}
+                    {% endblock %}
+                </div>
+                {% block page %}
+                    <div class="default">
+                        Place page content here
+                    </div>
+                {% endblock page %}
+            </div>
+            {% include 'core/footer.html' %}
+        </div>
+    </body>
+</html>
