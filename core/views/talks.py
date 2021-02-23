@@ -11,11 +11,12 @@ class ProgrammeView(django.views.generic.ListView):
     context_object_name = 'slots'
     template_name = 'core/programme.html'
 
-    queryset = model.objects \
-        .filter(event__code='2021') \
-        .annotate(
-            date=TruncDay('start'),
-        )
+    def get_queryset(self):
+        return self.model.objects \
+            .filter(event__code=self.kwargs.get('year', "2021")) \
+            .annotate(
+                date=TruncDay('start'),
+            )
 
 
 class SlotView(django.views.generic.DetailView):

@@ -71,19 +71,45 @@ h2 {
     font-size: 200%;
     font-weight: 500;
     padding-bottom: 8mm;
+    line-height: 1.5;
+}
+
+div.authortime {
+    width: 100%;
+    height: auto;
+    padding-bottom: 20mm;
 }
 
 span.author {
+    display: block;
+    float: left;
     font-size: 130%;
     font-style: italic;
-    padding-bottom: 5mm;
+    padding-bottom: 2mm;
+    width: 80%;
+}
+
+span.affiliation {
+    display: block;
+    float: left;
+    font-style: italic;
+    font-size: 90%;
+    width: 80%;
+}
+
+span.time {
+    display: block;
+    float: right;
+    height: 100%;
 }
 
 p {
+    clear: both;
     line-height: 1.5;
 }
 
 table {
+    width: 100%;
     background-color: hsl(0, 50%, 90%);
     border: 0px;
 }
@@ -106,4 +132,24 @@ table td {
 
 table td.time, table td.person {
     white-space: nowrap;
+}
+
+table td.title {
+    width: 10000px;
+}
+
+table tr.category-O {
+    background-color: hsl(225, 0%, 80%);
+}
+
+table tr.category-M {
+    background-color: hsl(0, 100%, 90%);
+}
+
+table tr.category-T {
+    background-color: hsl(225, 100%, 90%);
+}
+
+table tr.category-W {
+    background-color: hsl(120, 100%, 90%);
 }

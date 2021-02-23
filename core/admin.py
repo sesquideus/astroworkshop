@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.db import models
+from django.forms.widgets import TextInput, NumberInput
 
 import core
 
@@ -23,6 +25,19 @@ class SlotAdmin(admin.ModelAdmin):
     ordering = ['start']
 
     list_display = ['title', 'person', 'start']
+    list_filter = ['event']
+
+
+class SlotInline(admin.TabularInline):
+    model = core.models.Slot
+    fields = ('person', 'start', 'duration', 'title', 'abstract', 'category')
+
+    formfield_overrides = {
+        models.CharField: {
+            'widget': TextInput(attrs={'size': '100'}),
+        },
+    }
+
 
 @admin.register(core.models.Participation)
 class ParticipationAdmin(admin.ModelAdmin):
@@ -30,7 +45,7 @@ class ParticipationAdmin(admin.ModelAdmin):
 
 @admin.register(core.models.Event)
 class EventAdmin(admin.ModelAdmin):
-    pass
+    inlines = [SlotInline]
 
 @admin.register(core.models.Affiliation)
 class AffiliationAdmin(admin.ModelAdmin):

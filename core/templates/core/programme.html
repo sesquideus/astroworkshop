@@ -6,14 +6,18 @@
         {% regroup slots by date as slots_date %}
         {% for day, slots_day in slots_date %}
             <tr>
-                <th class="day" colspan="4">{{ day|date:"l Y-m-d" }}</th>
+                <th class="day" colspan="4">{{ day|date:"l Y-m-d"|default:"zatiaľ nezaradené" }}</th>
             </tr>
             {% for slot in slots_day %}
-                <tr>
-                    <td class="time">{{ slot.start|time:"H:i" }}&nbsp;&ndash;&nbsp;{{ slot.start|add_minutes:15|time:"H:i" }}</td>
+                <tr class="category-{{ slot.category }}">
+                    <td class="time">
+                        {{ slot.start|time:"H:i" }}
+                        {% if slot.start and slot.duration > 0 %}
+                            &ndash;&nbsp;{{ slot.start|add_minutes:slot.duration|time:"H:i" }}
+                        {% endif %}
+                    </td>
                     <td class="person">{{ slot.person|default:"" }}</td>
-                    <td><a href="{% url 'slot' id=slot.id %}">{{ slot.title }}</a></td>
-
+                    <td class="title"><a href="{% url 'slot' id=slot.id %}">{{ slot.title }}</a></td>
                 </tr>
             {% endfor %}
         {% endfor %}
