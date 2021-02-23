@@ -11,7 +11,7 @@ body {
 
 div.header {
     height: 16mm;
-    padding: 12px 20px;
+    padding: 12px 28px;
     background-color: hsl(320, 100%, 50%);
 }
 
@@ -22,7 +22,7 @@ div.header div.title {
 }
 
 div.header h1 {
-    margin: 0px 0px 3px 0px;
+    margin: 0px;
 }
 
 div.header ul {
@@ -118,7 +118,7 @@ table th.day {
     font-size: 160%;
     background-color: hsl(290, 50%, 30%);
     color: white;
-    padding: 5px 0px 8px;
+    padding: 8px 0px 11px;
     border: 0px;
 }
 
@@ -128,6 +128,7 @@ table tr {
 
 table td {
     padding: 4mm;
+    vertical-align: middle;
 }
 
 table td.time, table td.person {
@@ -138,8 +139,14 @@ table td.title {
     width: 10000px;
 }
 
+table td a, table td a:visited {
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+}
+
 table tr.category-O {
-    background-color: hsl(225, 0%, 80%);
+    background-color: hsl(240, 0%, 80%);
 }
 
 table tr.category-M {
@@ -151,5 +158,5 @@ table tr.category-T {
 }
 
 table tr.category-W {
-    background-color: hsl(120, 100%, 90%);
+    background-color: hsl(100, 100%, 80%);
 }
