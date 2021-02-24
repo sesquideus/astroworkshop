@@ -1,6 +1,7 @@
 {% extends 'core/base.html' %}
-{% load astro %}
+{% load astro tz %}
 
+{% timezone "Europe/Moscow" %}
 {% block page %}
     <table>
         {% regroup slots by date as slots_date %}
@@ -10,16 +11,25 @@
             </tr>
             {% for slot in slots_day %}
                 <tr class="category-{{ slot.category }}">
-                    <td class="time">
-                        {{ slot.start|time:"H:i" }}
+                    <td class="time" rowspan="{{ slot.people_count|at_least:1 }}">
+                        {{ slot.start|timezone:"Europe/Bratislava"|time:"H:i" }}
                         {% if slot.start and slot.duration > 0 %}
-                            &ndash;&nbsp;{{ slot.start|add_minutes:slot.duration|time:"H:i" }}
+                            &ndash;&nbsp;{{ slot.start|add_minutes:slot.duration|timezone:"Europe/Bratislava"|time:"H:i" }}
                         {% endif %}
                     </td>
-                    <td class="person">{{ slot.person|default:"" }}</td>
-                    <td class="title"><a href="{% url 'slot' id=slot.id %}">{{ slot.title }}</a></td>
+                    <td class="person" rowspan="{{ slot.people_count|at_least:1 }}">
+                        {% if slot.people_count > 1 %}
+                            <abbr title="{{ slot.people|join:", " }}">{{ slot.people.0 }}, ...</abbr>
+                        {% else %}
+                        {{ slot.people.0|default:"" }}
+                        {% endif %}
+                    </td>
+                    <td class="title" rowspan="{{ slot.people_count|at_least:1 }}">
+                        <a href="{% url 'slot' id=slot.id %}">{{ slot.title }}</a>
+                    </td>
                 </tr>
             {% endfor %}
         {% endfor %}
     </table>
 {% endblock %}
+{% endtimezone %}

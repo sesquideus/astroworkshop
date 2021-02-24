@@ -1,9 +1,21 @@
 from django.db import models
+from django.db.models import Count, Prefetch
+
+
+class SlotQuerySet(models.QuerySet):
+    def with_people(self):
+        return self.prefetch_related(
+            Prefetch('person', to_attr='people')
+        ).annotate(
+            people_count=Count('person')
+        )
 
 
 class Slot(models.Model):
     class Meta:
-        ordering = ['start', 'person']
+        ordering = ['start']
+
+    objects = SlotQuerySet.as_manager()
 
     CATEGORY_TALK = 'T'
     CATEGORY_WORKSHOP = 'W'
@@ -21,7 +33,7 @@ class Slot(models.Model):
     abstract = models.TextField(null=True, blank=True, max_length=4096)
     start = models.DateTimeField(null=True, blank=True, unique=True)
     duration = models.PositiveIntegerField(null=False)
-    person = models.ForeignKey('Participant', on_delete=models.CASCADE, null=True, blank=True)
+    person = models.ManyToManyField('Participant', related_name='people', blank=True)
     event = models.ForeignKey('Event', null=True, blank=True, on_delete=models.CASCADE)
     category = models.CharField(max_length=1, choices=CATEGORIES, default=CATEGORY_TALK)
 

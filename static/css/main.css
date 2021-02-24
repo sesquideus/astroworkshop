@@ -127,8 +127,9 @@ table tr {
 }
 
 table td {
-    padding: 4mm;
+    padding: 3mm 4mm;
     vertical-align: middle;
+    line-height: 1.5;
 }
 
 table td.time, table td.person {
@@ -159,4 +160,8 @@ table tr.category-T {
 
 table tr.category-W {
     background-color: hsl(100, 100%, 80%);
+}
+
+abbr {
+    text-decoration: none;
 }

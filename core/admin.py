@@ -24,13 +24,16 @@ class ParticipantAdmin(admin.ModelAdmin):
 class SlotAdmin(admin.ModelAdmin):
     ordering = ['start']
 
-    list_display = ['title', 'person', 'start']
+    list_display = ['title', 'start']
     list_filter = ['event']
+
+    def get_queryset(self, request):
+        return core.models.Slot.objects.with_people()
 
 
 class SlotInline(admin.TabularInline):
     model = core.models.Slot
-    fields = ('person', 'start', 'duration', 'title', 'abstract', 'category')
+    fields = ('start', 'duration', 'title', 'abstract', 'category')
 
     formfield_overrides = {
         models.CharField: {

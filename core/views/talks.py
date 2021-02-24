@@ -13,10 +13,12 @@ class ProgrammeView(django.views.generic.ListView):
 
     def get_queryset(self):
         return self.model.objects \
+            .with_people() \
             .filter(event__code=self.kwargs.get('year', "2021")) \
             .annotate(
                 date=TruncDay('start'),
-            )
+            ) \
+            .order_by('start')
 
 
 class SlotView(django.views.generic.DetailView):
@@ -25,3 +27,6 @@ class SlotView(django.views.generic.DetailView):
     template_name = 'core/slot.html'
     slug_field = 'id'
     slug_url_kwarg = 'id'
+
+    def get_queryset(self):
+        return self.model.objects.with_people()
