@@ -11,20 +11,19 @@
             </tr>
             {% for slot in slots_day %}
                 <tr class="category-{{ slot.category }}">
-                    <td class="time" rowspan="{{ slot.people_count|at_least:1 }}">
+                    <td class="time">
                         {{ slot.start|timezone:"Europe/Bratislava"|time:"H:i" }}
                         {% if slot.start and slot.duration > 0 %}
                             &ndash;&nbsp;{{ slot.start|add_minutes:slot.duration|timezone:"Europe/Bratislava"|time:"H:i" }}
                         {% endif %}
                     </td>
-                    <td class="person" rowspan="{{ slot.people_count|at_least:1 }}">
-                        {% if slot.people_count > 1 %}
-                            <abbr title="{{ slot.people|join:", " }}">{{ slot.people.0 }}, ...</abbr>
-                        {% else %}
-                        {{ slot.people.0|default:"" }}
-                        {% endif %}
+                    <td class="person">
+                        {% for person in slot.people %}
+                            <a href="{% url 'account' person.username %}">{{ person.get_full_name }}</a>
+                            {% if not forloop.last %}<br />{% endif %}
+                        {% endfor %}
                     </td>
-                    <td class="title" rowspan="{{ slot.people_count|at_least:1 }}">
+                    <td class="title">
                         <a href="{% url 'slot' id=slot.id %}">{{ slot.title }}</a>
                     </td>
                 </tr>

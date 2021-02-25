@@ -2,16 +2,23 @@
 {% load astro %}
 
 {% block page %}
-    </h2>
     <h2>
         {{ slot.title }}
     </h2>
     <div class="authortime">
         <span class="author">
-            {{ slot.people|join:", " }}
+            {% if slot.people_count == 0 %}
+            {% elif slot.people_count == 1 %}
+                {{ slot.people.0 }}
+            {% else %}
+                {% regroup slot.people by affiliation as affiliated %}
+                {% for aff, person in affiliated %}
+                {{ aff }}                    abc
+                {% endfor %}
+            {% endif %}
         </span>
         <span class="affiliation">
-            {% for aff in slot.person.affiliations.all %}{{ aff.full_name }}{% endfor %}
+            {% for aff in slot.people.affiliations.all %}{{ aff.full_name }}{% endfor %}
         </span>
         <span class="time">
             {{ slot.start|date:"l H:i" }}

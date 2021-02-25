@@ -11,7 +11,7 @@ body {
 
 div.header {
     height: 16mm;
-    padding: 12px 28px;
+    padding: 12px;
     background-color: hsl(320, 100%, 50%);
 }
 
@@ -22,7 +22,7 @@ div.header div.title {
 }
 
 div.header h1 {
-    margin: 0px;
+    margin: 0px 10px;
 }
 
 div.header ul {
@@ -51,6 +51,26 @@ div.header a {
 
 div.header a:visited {
     color: black;
+}
+
+div.header div.login-status {
+    display: block;
+    float: right;
+    text-align: right;
+    width: 10%;
+    min-width: 200px;
+    padding: 1mm;
+}
+
+div.header div.login-status a {
+    font-size: 80%;
+    font-weight: normal;
+}
+
+div.header div.login-status a.username {
+    font-weight: 600;
+    display: block;
+    font-size: 100%;
 }
 
 div.entire {
@@ -151,7 +171,7 @@ table tr.category-O {
 }
 
 table tr.category-M {
-    background-color: hsl(0, 100%, 90%);
+    background-color: hsl(0, 100%, 80%);
 }
 
 table tr.category-T {
