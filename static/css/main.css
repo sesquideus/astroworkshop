@@ -11,7 +11,7 @@ body {
 
 div.header {
     height: 16mm;
-    padding: 12px;
+    padding: 3mm 5mm;
     background-color: hsl(320, 100%, 50%);
 }
 
@@ -23,29 +23,13 @@ div.header div.title {
 
 div.header h1 {
     margin: 0px 10px;
+    white-space: nowrap;
 }
 
-div.header ul {
-    height: 100%;
-    display: block;
-    float: left;
-    padding: 8px;
-    list-style-type: none;
-    list-style-position: outside;
-}
-
-div.header ul li {
-    display: block;
-    width: auto;
-    height: 100%;
-    float: left;
-    vertical-align: baseline;
-}
-
-div.header a {
+div.header a, div.menu a {
     text-decoration: none;
     font-weight: bold;
-    font-size: 130%;
+    font-size: 100%;
     color: black;
 }
 
@@ -72,6 +56,31 @@ div.header div.login-status a.username {
     display: block;
     font-size: 100%;
 }
+
+div.menu {
+    width: 100%;
+    height: 9mm;
+    background-color: hsl(320, 100%, 75%);
+}
+
+
+div.menu ul {
+    display: block;
+    padding: 2mm 6mm;
+    height: 100%;
+    list-style-type: none;
+    list-style-position: outside;
+}
+
+div.menu ul li {
+    display: block;
+    width: auto;
+    height: 100%;
+    float: left;
+    padding: 0mm 2mm;
+    vertical-align: baseline;
+}
+
 
 div.entire {
     margin: auto;

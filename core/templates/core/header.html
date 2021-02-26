@@ -2,9 +2,6 @@
     <div class="title">
         <h1>Astroworkshop 2021</h1>
     </div>
-    <ul>
-        <li><a href="{% url 'programme' year=2021 %}">Program</a></li>
-    </ul>
 
     <div class="login-status">
         {% if request.user.is_authenticated %}
@@ -15,5 +12,10 @@
             <a href="{% url 'login' %}">log in</a>
         {% endif %}
     </div>
-
+</div>
+<div class="menu">
+    <ul>
+        <li><a href="{% url 'programme' year=2021 %}">Program</a></li>
+        <li><a href="{% url 'participants' year=2021 %}">Účastníci</a></li>
+    </ul>
 </div>

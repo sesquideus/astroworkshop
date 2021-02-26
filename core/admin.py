@@ -42,7 +42,11 @@ class SlotAdmin(admin.ModelAdmin):
     people_count.short_description = "Author count"
 
     def end(self, obj):
-        return obj.start + datetime.timedelta(minutes=obj.duration)
+        if obj.start is None or obj.duration is None:
+            return None
+        else:
+            return obj.start + datetime.timedelta(minutes=obj.duration)
+
     end.short_description = "End"
 
     def people(self, obj):

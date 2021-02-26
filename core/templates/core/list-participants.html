@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+{% load astro %}
+
+{% block page %}
+    <h2>
+        Zoznam účastníkov
+    </h2>
+    <table>
+        {% for participant in participants %}
+            <tr>
+                <td>
+                    {{ participant.get_full_name }}
+                </td>
+                <td>
+                    <span class="affiliation">
+                        {% for aff in participant.affiliations.all %}
+                            {{ aff.full_name }}
+                        {% endfor %}
+                    </span>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
