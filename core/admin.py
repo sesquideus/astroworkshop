@@ -14,6 +14,7 @@ class InstitudeAdmin(admin.ModelAdmin):
 
 class AffiliationInline(admin.TabularInline):
     model = core.models.Affiliation
+    extra = 1
 
 
 @admin.register(core.models.Participant)
@@ -57,6 +58,7 @@ class SlotAdmin(admin.ModelAdmin):
 class SlotInline(admin.TabularInline):
     model = core.models.Slot
     fields = ('start', 'duration', 'title', 'abstract', 'person', 'category')
+    extra = 3
 
     formfield_overrides = {
         models.CharField: {

@@ -2,6 +2,7 @@ html {
     width: 100%;
     font-family: "Segoe UI", "Verdana", sans-serif;
     padding: 0px;
+    background-color: hsl(0, 0%, 90%);
 }
 
 body {
@@ -10,40 +11,40 @@ body {
 }
 
 div.header {
-    height: 16mm;
+    position: relative;
+    height: 36mm;
     padding: 3mm 5mm;
-    background-color: hsl(320, 100%, 50%);
+    background-color: hsl(0, 0%, 10%);
+    color: white;
 }
 
 div.header div.title {
     display: inline-block;
-    float: left;
-    width: 30%;
 }
 
-div.header h1 {
-    margin: 0px 10px;
-    white-space: nowrap;
+div.header img.logo {
+    height: 30mm;
 }
 
 div.header a, div.menu a {
     text-decoration: none;
     font-weight: bold;
     font-size: 100%;
-    color: black;
+    color: white;
 }
 
 div.header a:visited {
-    color: black;
+    color: white;
 }
 
 div.header div.login-status {
-    display: block;
-    float: right;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0%;
     text-align: right;
-    width: 10%;
-    min-width: 200px;
-    padding: 1mm;
+    min-width: 20mm;
+    padding: 4mm;
 }
 
 div.header div.login-status a {
@@ -57,39 +58,49 @@ div.header div.login-status a.username {
     font-size: 100%;
 }
 
-div.menu {
-    width: 100%;
+div.menu-strip {
     height: 9mm;
-    background-color: hsl(320, 100%, 75%);
 }
 
-
-div.menu ul {
+div.menu-strip ul {
     display: block;
-    padding: 2mm 6mm;
-    height: 100%;
+    position: absolute;
+    width: 50%;
+    height: auto;
+    left: 18%;
+    top: 50%;
+    padding: 4mm 6mm;
+    transform: translateY(-50%);
     list-style-type: none;
     list-style-position: outside;
 }
 
-div.menu ul li {
+div.menu-strip ul li {
     display: block;
-    width: auto;
     height: 100%;
+    width: auto;
     float: left;
-    padding: 0mm 2mm;
-    vertical-align: baseline;
+    padding: 0mm 5mm;
+}
+
+div.menu-strip img.menu-item {
+    height: 8mm;
 }
 
 
 div.entire {
     margin: auto;
     max-width: 1250px;
-    background-color: hsl(0, 20%, 95%);
+    background-size: 4px 4px;
+    background-color: white;
+    background-image:
+       linear-gradient(to right, hsl(0, 0%, 95%) 1px, transparent 3px),
+       linear-gradient(to bottom, hsl(0, 0%, 95%) 1px, transparent 3px);
 }
 
 div.page {
     padding: 7mm;
+    background-image: linear-gradient(to right, hsla(0, 0%, 90%, 100%) 0%, hsla(0, 0%, 90%, 0%) 30%, hsla(0, 0%, 90%, 0%) 70%, hsla(0, 0%, 90%, 100%) 100%);
 }
 
 h1 {
@@ -139,20 +150,31 @@ p {
 
 table {
     width: 100%;
-    background-color: hsl(0, 50%, 90%);
     border: 0px;
 }
 
 table th.day {
+    text-align: left;
     font-size: 160%;
-    background-color: hsl(290, 50%, 30%);
-    color: white;
-    padding: 8px 0px 11px;
-    border: 0px;
+    color: black;
+    padding: 8px 5px 11px;
+    border-bottom: 2px solid hsl(0, 0%, 0%);
+}
+
+table span.dow {
+    font-weight: 600;
 }
 
 table tr {
     padding: 0px 0px;
+}
+
+table.programme tr {
+    border-bottom: 1px solid hsl(0, 0%, 85%);
+}
+
+table tr.last {
+    border-bottom: 20px solid hsla(0, 0%, 0%, 0%);
 }
 
 table td {
@@ -165,32 +187,34 @@ table td.time, table td.person {
     white-space: nowrap;
 }
 
-table td.title {
-    width: 10000px;
-}
-
 table td a, table td a:visited {
     font-weight: 600;
     text-decoration: none;
-    color: black;
+    color: inherit;
 }
 
 table tr.category-O {
-    background-color: hsl(240, 0%, 80%);
+    color: hsl(240, 0%, 40%);
 }
 
 table tr.category-M {
-    background-color: hsl(0, 100%, 80%);
+    color: hsl(0, 90%, 40%);
+    text-transform: uppercase;
 }
 
 table tr.category-T {
-    background-color: hsl(225, 100%, 90%);
+    color: hsl(225, 0%, 30%);
 }
 
 table tr.category-W {
-    background-color: hsl(100, 100%, 80%);
+    color: hsl(100, 90%, 30%);
+    text-transform: uppercase;
 }
 
 abbr {
     text-decoration: none;
+}
+
+div.page {
+    line-height: 150%;
 }

@@ -1,16 +1,19 @@
 {% extends 'core/base.html' %}
 {% load astro tz %}
 
-{% timezone "Europe/Moscow" %}
+{% timezone "Europe/Bratislava" %}
 {% block page %}
-    <table>
+    <table class="programme">
         {% regroup slots by date as slots_date %}
         {% for day, slots_day in slots_date %}
             <tr>
-                <th class="day" colspan="4">{{ day|date:"l Y-m-d"|default:"zatiaľ nezaradené" }}</th>
+                <th class="day" colspan="4">
+                    <span class="dow">{{ day|date:"l" }}</span>
+                    <span class="ymd">{{ day|date:"Y-m-d"|default:"zatiaľ nezaradené" }}
+                </th>
             </tr>
             {% for slot in slots_day %}
-                <tr class="category-{{ slot.category }}">
+                <tr class="category-{{ slot.category }}{% if forloop.last %} last{% endif %}">
                     <td class="time">
                         {{ slot.start|timezone:"Europe/Bratislava"|time:"H:i" }}
                         {% if slot.start and slot.duration > 0 %}

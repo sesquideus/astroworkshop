@@ -13,7 +13,7 @@
             {% else %}
                 {% regroup slot.people by affiliation as affiliated %}
                 {% for aff, person in affiliated %}
-                {{ aff }}                    abc
+                    {{ aff|default:"" }}
                 {% endfor %}
             {% endif %}
         </span>

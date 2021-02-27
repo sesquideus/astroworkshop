@@ -13,7 +13,7 @@ class Participant(AbstractUser):
     participations = models.ManyToManyField(
         'Event',
         through='Participation',
-        through_fields=('person', 'event'),
+        related_name = 'participants'
     )
     about = models.TextField(blank=True)
 

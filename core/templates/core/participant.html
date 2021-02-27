@@ -12,6 +12,19 @@
             {% endfor %}
         </span>
     </div>
+    <ul>
+        {% for par in participant.participation_set.all %}
+            <li>
+                {{ par.event }}
+                {% if par.organizer %}
+                    (organizátor)
+                {% endif %}
+                {% if par.online %}
+                    (online)
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
     <p>
         {{ participant.about }}
     </p>
