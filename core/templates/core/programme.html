@@ -19,7 +19,7 @@
                     </td>
                     <td class="person">
                         {% for person in slot.people %}
-                            <a href="{% url 'account' person.username %}">{{ person.get_full_name }}</a>
+                            <a href="{% url 'participant' person.username %}">{{ person.get_full_name }}</a>
                             {% if not forloop.last %}<br />{% endif %}
                         {% endfor %}
                     </td>

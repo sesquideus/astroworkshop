@@ -5,11 +5,11 @@
 
     <div class="login-status">
         {% if request.user.is_authenticated %}
-            <a href="{% url 'account' username=request.user.username %}" class="username logged">{{ request.user.get_full_name }}</a>
-            <a href="{% url 'logout' %}">log out</a>
+            <a href="{% url 'participant' username=request.user.username %}" class="username logged">{{ request.user.get_full_name }}</a>
+            <a href="{% url 'logout' %}">odhlásiť sa</a>
         {% else %}
-            <a class="username not-logged">not logged in</a>
-            <a href="{% url 'login' %}">log in</a>
+            <a class="username not-logged">neprihlásené</a>
+            <a href="{% url 'login' %}">prihlásiť sa</a>
         {% endif %}
     </div>
 </div>

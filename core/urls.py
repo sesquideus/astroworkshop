@@ -9,7 +9,7 @@ urlpatterns = [
     path('<int:year>/participants', participant.ListView.as_view(), name='participants'),
     path('talk/<int:id>/', talks.SlotView.as_view(), name='slot'),
 
-    path('participant/<slug:username>/', participant.ParticipantView.as_view(), name='account'),
+    path('people/<slug:username>/', participant.ParticipantView.as_view(), name='participant'),
     path('login', authViews.LoginView.as_view(template_name='core/login.html'), name='login'),
     path('logout', authViews.LogoutView.as_view(template_name='core/logout.html', next_page='default'), name='logout'),
 ]
