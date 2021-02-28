@@ -100,7 +100,7 @@ div.entire {
 
 div.page {
     padding: 7mm;
-    background-image: linear-gradient(to right, hsla(0, 0%, 90%, 100%) 0%, hsla(0, 0%, 90%, 0%) 30%, hsla(0, 0%, 90%, 0%) 70%, hsla(0, 0%, 90%, 100%) 100%);
+    background-image: linear-gradient(to right, hsla(0, 0%, 90%, 100%) 0%, hsla(0, 0%, 90%, 0%) 20%, hsla(0, 0%, 90%, 0%) 80%, hsla(0, 0%, 90%, 100%) 100%);
 }
 
 h1 {
@@ -194,7 +194,7 @@ table td a, table td a:visited {
 }
 
 table tr.category-O {
-    color: hsl(240, 0%, 40%);
+    color: hsl(240, 90%, 30%);
 }
 
 table tr.category-M {
@@ -203,7 +203,7 @@ table tr.category-M {
 }
 
 table tr.category-T {
-    color: hsl(225, 0%, 30%);
+    color: hsl(225, 0%, 20%);
 }
 
 table tr.category-W {

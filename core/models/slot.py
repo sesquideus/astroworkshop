@@ -29,7 +29,7 @@ class Slot(models.Model):
         (CATEGORY_OTHER, 'Ostatné'),
     ]
 
-    title = models.CharField(null=True, blank=True, unique=True, max_length=256)
+    title = models.CharField(null=True, blank=True, max_length=256)
     abstract = models.TextField(null=True, blank=True, max_length=4096)
     start = models.DateTimeField(null=True, blank=True, unique=True)
     duration = models.PositiveIntegerField(null=False)
@@ -38,4 +38,4 @@ class Slot(models.Model):
     category = models.CharField(max_length=1, choices=CATEGORIES, default=CATEGORY_TALK)
 
     def __str__(self):
-        return f"{self.person}: {self.title} ({self.start})"
+        return f"{self.title} ({self.start})"

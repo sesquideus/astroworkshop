@@ -17,9 +17,15 @@ class AffiliationInline(admin.TabularInline):
     extra = 1
 
 
+class ParticipationInline(admin.TabularInline):
+    model = core.models.Participation
+    fields = ('event', 'online', 'organizer')
+    extra = 1
+
+
 @admin.register(core.models.Participant)
 class ParticipantAdmin(admin.ModelAdmin):
-    inlines = [AffiliationInline]
+    inlines = [AffiliationInline, ParticipationInline]
 
     list_display = ['get_full_name', 'list_affiliations']
 
