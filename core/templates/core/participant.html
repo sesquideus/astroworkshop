@@ -12,19 +12,26 @@
             {% endfor %}
         </span>
     </div>
-    <ul>
-        {% for par in participant.participation_set.all %}
-            <li>
-                {{ par.event }}
-                {% if par.organizer %}
-                    (organizátor)
-                {% endif %}
-                {% if par.online %}
-                    (online)
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
+    {% for par in participant.participation_set.all %}
+        <h3>
+            {{ par.event }}
+            {% if par.organizer %}
+                (organizátor)
+            {% endif %}
+            {% if par.online %}
+                (online)
+            {% endif %}
+        </h3>
+        {% if participant.talks %}
+            <ul>
+                {% for talk in participant.talks %}
+                    {% if talk.event.code == par.event.code %}
+                    <a href="{% url 'slot' talk.id %}">{{ talk.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endfor %}
     <p>
         {{ participant.about }}
     </p>

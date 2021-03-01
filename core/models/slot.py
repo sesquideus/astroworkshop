@@ -34,7 +34,7 @@ class Slot(models.Model):
     start = models.DateTimeField(null=True, blank=True)
     duration = models.PositiveIntegerField(null=False)
     note = models.CharField(blank=True, max_length=256)
-    person = models.ManyToManyField('Participant', related_name='people', blank=True)
+    person = models.ManyToManyField('Participant', related_name='slots', blank=True)
     event = models.ForeignKey('Event', null=True, blank=True, on_delete=models.CASCADE)
     category = models.CharField(max_length=1, choices=CATEGORIES, default=CATEGORY_TALK)
 

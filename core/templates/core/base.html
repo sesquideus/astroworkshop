@@ -17,20 +17,22 @@
         {% block headextra %}{% endblock %}
     </head>
     <body>
-        <div class="entire">
-            {% include 'core/header.html' %}
-            <div class="page">
-                <div class="titlebar">
-                    {% block pagetitle %}
-                    {% endblock %}
-                </div>
-                {% block page %}
-                    <div class="default">
-                        Place page content here
+        <div class="wrapper">
+            <div class="entire">
+                {% include 'core/header.html' %}
+                <div class="page">
+                    <div class="titlebar">
+                        {% block pagetitle %}
+                        {% endblock %}
                     </div>
-                {% endblock page %}
+                    {% block page %}
+                        <div class="default">
+                            Place page content here
+                        </div>
+                    {% endblock page %}
+                </div>
+                {% include 'core/footer.html' %}
             </div>
-            {% include 'core/footer.html' %}
         </div>
     </body>
 </html>

@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% load astro %}
+{% load tz astro %}
 
 {% block page %}
     <h2>
@@ -21,13 +21,13 @@
             {% for aff in slot.people.affiliations.all %}{{ aff.full_name }}{% endfor %}
         </span>
         <span class="time">
-            {{ slot.start|date:"l H:i" }}
+            {{ slot.start|timezone:"Europe/Bratislava"|date:"l H:i" }}
             {% if slot.start and slot.duration > 0 %}
-                &ndash;&nbsp;{{ slot.start|add_minutes:slot.duration|time:"H:i" }}
+                &ndash;&nbsp;{{ slot.start|add_minutes:slot.duration|timezone:"Europe/Bratislava"|time:"H:i" }}
             {% endif %}
         </span>
     </div>
     <p>
-        {{ slot.abstract }}
+        {{ slot.abstract|replace:"#\n#<br />" }}
     </p>
 {% endblock %}

@@ -19,3 +19,6 @@ class ParticipantView(django.views.generic.DetailView):
     template_name = 'core/participant.html'
     slug_field = 'username'
     slug_url_kwarg = 'username'
+
+    def get_queryset(self):
+        return self.model.objects.with_talks()
