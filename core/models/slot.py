@@ -13,7 +13,7 @@ class SlotQuerySet(models.QuerySet):
 
 class Slot(models.Model):
     class Meta:
-        ordering = ['start']
+        ordering = ['start', 'duration']
 
     objects = SlotQuerySet.as_manager()
 
@@ -29,10 +29,11 @@ class Slot(models.Model):
         (CATEGORY_OTHER, 'Ostatné'),
     ]
 
-    title = models.CharField(null=True, blank=True, max_length=256)
-    abstract = models.TextField(null=True, blank=True, max_length=4096)
-    start = models.DateTimeField(null=True, blank=True, unique=True)
+    title = models.CharField(blank=True, max_length=256)
+    abstract = models.TextField(blank=True, max_length=4096)
+    start = models.DateTimeField(null=True, blank=True)
     duration = models.PositiveIntegerField(null=False)
+    note = models.CharField(blank=True, max_length=256)
     person = models.ManyToManyField('Participant', related_name='people', blank=True)
     event = models.ForeignKey('Event', null=True, blank=True, on_delete=models.CASCADE)
     category = models.CharField(max_length=1, choices=CATEGORIES, default=CATEGORY_TALK)

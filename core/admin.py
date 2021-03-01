@@ -23,6 +23,18 @@ class ParticipationInline(admin.TabularInline):
     extra = 1
 
 
+class SlotInline(admin.TabularInline):
+    model = core.models.Slot
+    fields = ('person', 'start', 'duration', 'title', 'abstract', 'note', 'category')
+    extra = 3
+
+    formfield_overrides = {
+        models.CharField: {
+            'widget': TextInput(attrs={'size': '80'}),
+        },
+    }
+
+
 @admin.register(core.models.Participant)
 class ParticipantAdmin(admin.ModelAdmin):
     inlines = [AffiliationInline, ParticipationInline]
@@ -38,7 +50,7 @@ class ParticipantAdmin(admin.ModelAdmin):
 class SlotAdmin(admin.ModelAdmin):
     ordering = ['start']
 
-    list_display = ['title', 'people', 'start', 'duration', 'end']
+    list_display = ['title', 'people', 'start', 'duration', 'note', 'end']
     list_filter = ['event']
 
     def get_queryset(self, request):
@@ -59,18 +71,6 @@ class SlotAdmin(admin.ModelAdmin):
     def people(self, obj):
         return ', '.join([x.__str__() for x in obj.people])
     people.short_description = "Authors"
-
-
-class SlotInline(admin.TabularInline):
-    model = core.models.Slot
-    fields = ('start', 'duration', 'title', 'abstract', 'person', 'category')
-    extra = 3
-
-    formfield_overrides = {
-        models.CharField: {
-            'widget': TextInput(attrs={'size': '100'}),
-        },
-    }
 
 
 @admin.register(core.models.Participation)

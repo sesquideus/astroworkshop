@@ -10,7 +10,7 @@ class ListView(django.views.generic.ListView):
     template_name = 'core/list-participants.html'
 
     def get_queryset(self):
-        return self.model.objects.filter(participations__code=self.kwargs['year'])
+        return self.model.objects.filter(participations__code=self.kwargs['year']).order_by('last_name')
 
 
 class ParticipantView(django.views.generic.DetailView):

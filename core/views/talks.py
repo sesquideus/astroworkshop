@@ -18,7 +18,7 @@ class ProgrammeView(django.views.generic.ListView):
             .annotate(
                 date=TruncDay('start'),
             ) \
-            .order_by('start')
+            .order_by('start', 'duration')
 
 
 class SlotView(django.views.generic.DetailView):
@@ -29,4 +29,4 @@ class SlotView(django.views.generic.DetailView):
     slug_url_kwarg = 'id'
 
     def get_queryset(self):
-        return self.model.objects.with_people()
+        return self.model.objects.with_people().order_by('person__last_name')

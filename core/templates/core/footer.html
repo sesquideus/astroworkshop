@@ -1,2 +1,12 @@
 <div class="footer">
+    <ul class="strip">
+        {% now "Y" as year %}
+        <li>&copy; 2021{% if year > 2021 %}&ndash;{{ year }}{% endif %}</li>
+        <li>OAA KAFZM FMFI UK</li>
+        <li>stránka <span class="name">Martin Baláž</span></li>
+        <li>grafika <span class="name">Daniela Bartková</span></li>
+        <a class="badge" href="http://www.djangoproject.com/">
+            <img src="https://www.djangoproject.com/m/img/badges/djangomade124x25.gif" alt="Made with Django." title="Made with Django." />
+        </a>
+    </ul>
 </div>

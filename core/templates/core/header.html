@@ -5,16 +5,20 @@
         <img src="{% static 'images/web_logo.png' %}" alt="Logo" class="logo" />
     </div>
     <div class="menu-strip">
-        <ul>
+        <ul class="strip">
             <li>
-                <a href="{% url 'programme' year=2021 %}">
-                    <img src="{% static 'images/menu_program_.png' %}" alt="Program" class="menu-item" id="menu-program" />
-                </a>
+                <div class="fancy-menu">
+                    <a href="{% url 'programme' year=2021 %}" data-text="Program">
+                        Program
+                    </a>
+                </div>
             </li>
             <li>
-                <a href="{% url 'participants' year=2021 %}">
-                    <img src="{% static 'images/menu_ucastnici_.png' %}" alt="Účastníci" class="menu-item" id="menu-participants" />
-                </a>
+                <div class="fancy-menu">
+                    <a href="{% url 'participants' year=2021 %}" data-text="Účastníci">
+                        Účastníci
+                    </a>
+                </div>
             </li>
         </ul>
     </div>

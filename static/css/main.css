@@ -2,20 +2,73 @@ html {
     width: 100%;
     font-family: "Segoe UI", "Verdana", sans-serif;
     padding: 0px;
-    background-color: hsl(0, 0%, 90%);
 }
 
 body {
     height: 100%;
     margin: 0px;
+    min-height: 100vh;
+    overflow-y: scroll;
+    background-color: hsl(0, 0%, 90%);
+    background-image: url("/static/images/background.png");
+    background-repeat: repeat;
+}
+
+div.entire {
+    margin: auto;
+    max-width: 1250px;
+    min-height: 100vh;
+    background-size: 4px 4px;
+    background-color: white;
+    background-image:
+       linear-gradient(to right, hsl(0, 0%, 95%) 1px, transparent 3px),
+       linear-gradient(to bottom, hsl(0, 0%, 95%) 1px, transparent 3px);
+}
+
+div.header, div.footer {
+    width: 100%;
+    background-color: hsl(0, 0%, 10%);
+    color: white;
 }
 
 div.header {
     position: relative;
     height: 36mm;
     padding: 3mm 5mm;
-    background-color: hsl(0, 0%, 10%);
     color: white;
+}
+
+div.footer {
+    height: 12mm;
+    color: hsl(0, 0%, 50%);
+}
+
+span.name {
+    font-weight: 600;
+    color: hsl(0, 0%, 70%);
+}
+
+ul.strip {
+    height: 100%;
+    position: relative;
+    padding: 0mm 5mm;
+    list-style-type: none;
+    list-style-position: outside;
+}
+
+ul.strip li {
+    display: block;
+    height: 100%;
+    float: left;
+    margin: 0 auto;
+    vertical-align: middle;
+    padding: 4mm 5mm 0mm 5mm;
+}
+
+ul.strip a.badge {
+    display: block;
+    float: right;
+    padding-top: 3mm;
 }
 
 div.header div.title {
@@ -59,28 +112,59 @@ div.header div.login-status a.username {
 }
 
 div.menu-strip {
-    height: 9mm;
-}
-
-div.menu-strip ul {
-    display: block;
     position: absolute;
     width: 50%;
-    height: auto;
-    left: 18%;
+    height: 100%;
     top: 50%;
-    padding: 4mm 6mm;
+    left: 20%;
     transform: translateY(-50%);
-    list-style-type: none;
-    list-style-position: outside;
 }
 
 div.menu-strip ul li {
-    display: block;
     height: 100%;
-    width: auto;
-    float: left;
+    width: 40mm;
     padding: 0mm 5mm;
+}
+
+div.menu-strip ul li a {
+    display: block;
+    position: absolute;
+    font-size: 150%;
+    text-transform: uppercase;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+div.menu-strip ul li a:before,
+div.menu-strip ul li a:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: transform 0.2s ease-in-out;
+}
+
+div.menu-strip ul li a:before {
+    color: hsl(330, 100%, 50%);
+    transform: rotate(1deg);
+    z-index: -1;
+}
+
+div.menu-strip ul li a:hover:before {
+    transform: rotate(-1deg);
+}
+
+div.menu-strip ul li a::after {
+    color: hsl(180, 100%, 50%);
+    transform: rotate(-1deg);
+    z-index: -2;
+}
+
+div.menu-strip ul li a:hover:after {
+    transform: rotate(1deg);
 }
 
 div.menu-strip img.menu-item {
@@ -88,19 +172,10 @@ div.menu-strip img.menu-item {
 }
 
 
-div.entire {
-    margin: auto;
-    max-width: 1250px;
-    background-size: 4px 4px;
-    background-color: white;
-    background-image:
-       linear-gradient(to right, hsl(0, 0%, 95%) 1px, transparent 3px),
-       linear-gradient(to bottom, hsl(0, 0%, 95%) 1px, transparent 3px);
-}
-
 div.page {
     padding: 7mm;
     background-image: linear-gradient(to right, hsla(0, 0%, 90%, 100%) 0%, hsla(0, 0%, 90%, 0%) 20%, hsla(0, 0%, 90%, 0%) 80%, hsla(0, 0%, 90%, 100%) 100%);
+    min-height: calc(100vh - 48mm);
 }
 
 h1 {
