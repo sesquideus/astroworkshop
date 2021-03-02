@@ -16,7 +16,6 @@ class ParticipantQuerySet(models.QuerySet):
         )
 
 
-
 class Participant(AbstractUser):
     """
         Overrides the built-in Django User model and adds affiliations and workshop participations

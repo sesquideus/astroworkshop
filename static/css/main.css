@@ -9,7 +9,7 @@ body {
     margin: 0px;
     min-height: 100vh;
     overflow-y: scroll;
-    background-color: hsl(0, 0%, 90%);
+    background-color: hsl(0, 0%, 92%);
     background-image: url("/static/images/background.png");
     background-repeat: repeat;
     background-size: 1000px 560px;
@@ -25,11 +25,11 @@ div.entire {
     border-color: hsl(0, 0%, 85%);
     border-style: solid;
     border-width: 0px 1px;
-    background-size: 4px 4px;
-    background-color: white;
+    background-size: 5px 5px;
+    background-color: hsl(0, 0%, 100%);
     background-image:
-       linear-gradient(to right, hsl(0, 0%, 90%) 1px, transparent 4px),
-       linear-gradient(to bottom, hsl(0, 0%, 90%) 1px, transparent 4px);
+       linear-gradient(to right, hsl(0, 0%, 95%) 1px, transparent 5px),
+       linear-gradient(to bottom, hsl(0, 0%, 95%) 1px, transparent 5px);
 }
 
 div.header, div.footer {
@@ -146,6 +146,7 @@ div.menu-strip ul li a {
     text-transform: uppercase;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 1;
 }
 
 div.menu-strip ul li a:before,
@@ -156,7 +157,6 @@ div.menu-strip ul li a:after {
     left: 0px;
     width: 100%;
     height: 100%;
-    z-index: 1;
     transition: transform 0.2s ease-in-out;
 }
 
@@ -186,8 +186,9 @@ div.menu-strip img.menu-item {
 
 
 div.page {
+    line-height: 150%;
     padding: 10mm;
-    background-image: linear-gradient(to right, hsla(0, 0%, 90%, 100%) 0%, hsla(0, 0%, 90%, 0%) 20%, hsla(0, 0%, 90%, 0%) 80%, hsla(0, 0%, 90%, 100%) 100%);
+    background-image: linear-gradient(to right, hsla(0, 0%, 88%, 100%) 0%, hsla(0, 0%, 88%, 0%) 20%, hsla(0, 0%, 88%, 0%) 80%, hsla(0, 0%, 88%, 100%) 100%);
     min-height: calc(100vh - 48mm);
 }
 
@@ -252,7 +253,7 @@ table th.day {
     text-align: left;
     font-size: 160%;
     color: black;
-    padding: 8px 5px 11px;
+    padding: 8px 0px 11px;
     border-bottom: 2px solid hsl(0, 0%, 0%);
 }
 
@@ -316,6 +317,6 @@ abbr {
     text-decoration: none;
 }
 
-div.page {
-    line-height: 150%;
+span.empty {
+    color: hsl(0, 0%, 60%);
 }

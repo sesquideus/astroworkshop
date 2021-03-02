@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -157,3 +158,7 @@ DATE_FORMAT = 'Y-m-d'
 DATE_INPUT_FORMATS = ['%Y-%m-%d']
 
 LOGIN_REDIRECT_URL = '/'
+
+if os.environ.get('DJANGO_DEVELOPMENT'):
+    DEBUG = True
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

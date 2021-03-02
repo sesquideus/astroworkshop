@@ -28,6 +28,10 @@
         </span>
     </div>
     <p>
-        {{ slot.abstract|replace:"#\n#<br />" }}
+        {% if slot.abstract %}
+            {{ slot.abstract|replace:"#\n#<br />" }}
+        {% else %}
+            <span class="empty">(bez abstraktu)</span>
+        {% endif %}
     </p>
 {% endblock %}

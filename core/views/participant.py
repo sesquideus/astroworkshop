@@ -1,7 +1,12 @@
 import django
-from datetime import timedelta
+import locale
+import unicodedata
+
+from functools import cmp_to_key
 
 from core.models import Participant
+
+locale.setlocale(locale.LC_ALL, "")
 
 
 class ListView(django.views.generic.ListView):
@@ -11,6 +16,11 @@ class ListView(django.views.generic.ListView):
 
     def get_queryset(self):
         return self.model.objects.filter(participations__code=self.kwargs['year']).order_by('last_name')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context[self.context_object_name] = sorted(context[self.context_object_name], key=lambda x: unicodedata.normalize('NFKD', x.last_name))
+        return context
 
 
 class ParticipantView(django.views.generic.DetailView):
