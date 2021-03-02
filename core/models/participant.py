@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models import Prefetch, F, Q
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 
 from .slot import Slot
 
@@ -24,7 +24,7 @@ class Participant(AbstractUser):
     class Meta:
         ordering = ['last_name', 'first_name']
 
-    objects = ParticipantQuerySet.as_manager()
+    objects = UserManager.from_queryset(ParticipantQuerySet)()
 
     affiliations = models.ManyToManyField(
         'Institute',

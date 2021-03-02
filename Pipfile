@@ -9,6 +9,7 @@ verify_ssl = true
 jinja2 = "*"
 pyyaml = "*"
 django = "*"
+uwsgi = "*"
 
 [requires]
 python_version = "3.9"

@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'is-nf+(b84vzjv+&vn=x#59628jl=iphewblswo!d7-6jyt*fm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['192.168.153.128', '192.168.248.128', '158.195.84.177']
 
@@ -70,6 +70,25 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'astroworkshop.wsgi.application'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'django.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        }
+    },
+}
 
 
 # Database
@@ -127,6 +146,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+STATIC_ROOT = '/var/www/astroworkshop/static/'
 
 DATETIME_FORMAT = 'Y-m-d H:i:s'
 DATETIME_INPUT_FORMATS = [
