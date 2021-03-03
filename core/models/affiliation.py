@@ -2,8 +2,8 @@ from django.db import models
 
 
 class Affiliation(models.Model):
-    person = models.ForeignKey('Participant', on_delete=models.CASCADE)
-    institute = models.ForeignKey('Institute', on_delete=models.CASCADE, related_name='people')
+    person = models.ForeignKey('Participant', on_delete=models.CASCADE, related_name='affiliation')
+    institute = models.ForeignKey('Institute', on_delete=models.CASCADE, related_name='affiliation')
     start = models.DateField(null=True, blank=True)
     end = models.DateField(null=True, blank=True)
 

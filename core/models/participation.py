@@ -5,7 +5,6 @@ class Participation(models.Model):
     class Meta:
         ordering = ['event']
 
-
     person = models.ForeignKey('Participant', on_delete=models.CASCADE, null=False)
     event = models.ForeignKey('Event', on_delete=models.CASCADE, null=False)
     online = models.BooleanField(null=False, blank=False, default=False)

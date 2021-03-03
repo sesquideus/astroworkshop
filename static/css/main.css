@@ -92,14 +92,10 @@ div.header img.logo {
     height: 30mm;
 }
 
-div.header a, div.menu a {
+div.header a, div.header a:visited {
     text-decoration: none;
     font-weight: bold;
     font-size: 100%;
-    color: white;
-}
-
-div.header a:visited {
     color: white;
 }
 
@@ -213,35 +209,57 @@ h3 {
 
 div.authortime {
     width: 100%;
-    height: auto;
-    padding-bottom: 20mm;
+}
+
+div.author {
+    line-height: 1.5;
+    width: 80%;
+    float: left;
+}
+
+div.time {
+    width: 20%;
+    float: right;
+    vertical-align: middle;
 }
 
 span.author {
-    display: block;
-    float: left;
     font-size: 130%;
     font-style: italic;
-    padding-bottom: 2mm;
-    width: 80%;
+    width: 100%;
 }
 
 span.affiliation {
-    display: block;
-    float: left;
+    color: hsl(0, 0%, 30%);
     font-style: italic;
-    font-size: 90%;
-}
-
-span.time {
-    display: block;
-    float: right;
-    height: 100%;
+    font-size: 80%;
 }
 
 p {
     clear: both;
     line-height: 1.5;
+}
+
+div.title {
+    width: 100%;
+    display: flex;
+}
+
+div.title h2 {
+    flex: 1;
+}
+
+div.title div.time {
+    flex: 0 0 200px;
+}
+
+span.time {
+    display: block;
+    font-size: 120%;
+    height: 100%;
+    text-align: right;
+    vertical-align: middle;
+    padding: 5mm 0mm;
 }
 
 table {
@@ -257,16 +275,28 @@ table th.day {
     border-bottom: 2px solid hsl(0, 0%, 0%);
 }
 
-table span.dow {
+table th.day a, table th.day a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+span.dow {
     font-weight: 600;
 }
 
 table tr {
-    padding: 0px 0px;
+    padding-top: 3mm;
+    padding-bottom: 3mm;
 }
 
-table.programme tr {
-    border-bottom: 1px solid hsl(0, 0%, 85%);
+table.programme tr:not(:first-child) {
+    border-top: 1px solid hsl(0, 0%, 85%);
+}
+
+table.programme tr.abstract {
+    border-top: 0px none;
+    color: hsl(0, 0%, 30%);
+    font-style: italic;
 }
 
 table tr.last {
@@ -278,7 +308,10 @@ table td {
     padding-bottom: 3mm;
     padding-right: 8mm;
     vertical-align: middle;
-    line-height: 1.5;
+}
+
+table tr.abstract td {
+    padding-top: 0mm;
 }
 
 table td:last-child {
@@ -318,5 +351,10 @@ abbr {
 }
 
 span.empty {
-    color: hsl(0, 0%, 60%);
+    color: hsl(0, 0%, 50%);
+    font-style: italic;
+}
+
+p.abstract {
+    padding-top: 8mm;
 }

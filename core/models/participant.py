@@ -3,6 +3,8 @@ from django.db.models import Prefetch, F, Q
 from django.contrib.auth.models import AbstractUser, UserManager
 
 from .slot import Slot
+from .affiliation import Affiliation
+from .institute import Institute
 
 
 class ParticipantQuerySet(models.QuerySet):
@@ -14,6 +16,18 @@ class ParticipantQuerySet(models.QuerySet):
                 to_attr='talks',
             ),
         )
+
+    def with_current_affiliations(self, date):
+        return self.prefetch_related(
+            Prefetch(
+                'affiliations',
+                queryset=Institute.objects.exclude(Q(affiliation__start__gte=date) | Q(affiliation__end__lte=date)).distinct(),
+                to_attr='current_affiliations',
+            ),
+        )
+
+    def for_event(self, event_code):
+        return self.filter(participations__code=event_code)
 
 
 class Participant(AbstractUser):
@@ -27,12 +41,13 @@ class Participant(AbstractUser):
 
     affiliations = models.ManyToManyField(
         'Institute',
-        through='Affiliation'
+        through='Affiliation',
+        related_name = 'people',
     )
     participations = models.ManyToManyField(
         'Event',
         through='Participation',
-        related_name = 'participants'
+        related_name = 'participants',
     )
     about = models.TextField(blank=True)
 

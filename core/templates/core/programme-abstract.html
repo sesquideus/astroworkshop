@@ -1,0 +1,13 @@
+{% extends 'core/programme.html' %}
+{% load astro tz %}
+
+{% block abstract %}
+    {% if slot.abstract %}
+    <tr class="abstract">
+        <td colspan="2"></td>
+        <td>
+            {{ slot.abstract }}
+        </td>
+    </tr>
+    {% endif %}
+{% endblock abstract %}

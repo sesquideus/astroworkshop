@@ -1,15 +1,21 @@
+from django.apps import apps
 from django.db import models
-from django.db.models import Count, Prefetch
+from django.db.models import Count, Prefetch, F, OuterRef
 
 
 class SlotQuerySet(models.QuerySet):
     def with_people(self):
+        Participant = apps.get_model('core', 'Participant')
+
         return self.prefetch_related(
-            Prefetch('person', to_attr='people')
+            Prefetch(
+                'person',
+                queryset=Participant.objects.with_current_affiliations(F('people__slots__start')),
+                to_attr='people'
+            )
         ).annotate(
             people_count=Count('person')
         )
-
 
 class Slot(models.Model):
     class Meta:

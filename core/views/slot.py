@@ -1,7 +1,8 @@
+import datetime
 import django
+import pytz
 from django.db.models import F, Q, ExpressionWrapper, Func, When, DateTimeField
 from django.db.models.functions import TruncDay
-from datetime import timedelta
 
 from core.models import Slot
 
@@ -21,6 +22,15 @@ class ProgrammeView(django.views.generic.ListView):
             .order_by('start', 'duration')
 
 
+class DayProgrammeView(ProgrammeView):
+    template_name = 'core/programme-abstract.html'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            date=datetime.datetime(self.kwargs['year'], self.kwargs['month'], self.kwargs['day'], 0, 0, 0, tzinfo=pytz.utc)
+        )
+
+
 class SlotView(django.views.generic.DetailView):
     model = Slot
     context_object_name = 'slot'
@@ -29,4 +39,4 @@ class SlotView(django.views.generic.DetailView):
     slug_url_kwarg = 'id'
 
     def get_queryset(self):
-        return self.model.objects.with_people().order_by('person__last_name')
+        return self.model.objects.with_people()

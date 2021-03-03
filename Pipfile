@@ -10,6 +10,8 @@ jinja2 = "*"
 pyyaml = "*"
 django = "*"
 uwsgi = "*"
+ipython = "*"
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.9"
