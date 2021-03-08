@@ -26,7 +26,7 @@ SECRET_KEY = 'is-nf+(b84vzjv+&vn=x#59628jl=iphewblswo!d7-6jyt*fm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['192.168.153.128', '192.168.248.128', '158.195.84.177']
+ALLOWED_HOSTS = ['158.195.84.177']
 INTERNAL_IPS = ['127.0.0.1', '192.168.248.128']
 
 
@@ -169,3 +169,6 @@ LOGIN_REDIRECT_URL = '/'
 if os.environ.get('DJANGO_DEVELOPMENT'):
     DEBUG = True
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+    ALLOWED_HOSTS = ['192.168.153.128', '192.168.248.128']
+    INTERNAL_IPS = ['127.0.0.1', '192.168.248.128']
