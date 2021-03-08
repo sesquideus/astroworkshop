@@ -3,6 +3,10 @@ from django.db import models
 from django.db.models import Count, Prefetch, F, OuterRef
 
 
+def presentation_filename(instance, filename):
+    return f"{instance.event.code}/{instance.person.username}/filename"
+
+
 class SlotQuerySet(models.QuerySet):
     def with_people(self):
         Participant = apps.get_model('core', 'Participant')
@@ -43,6 +47,11 @@ class Slot(models.Model):
     person = models.ManyToManyField('Participant', related_name='slots', blank=True)
     event = models.ForeignKey('Event', null=True, blank=True, on_delete=models.CASCADE)
     category = models.CharField(max_length=1, choices=CATEGORIES, default=CATEGORY_TALK)
+    presentation = models.FileField(
+        null=True,
+        blank=True,
+        upload_to=presentation_filename,
+    )
 
     def __str__(self):
         return f"{self.title} ({self.start})"

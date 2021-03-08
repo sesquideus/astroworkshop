@@ -6,7 +6,7 @@
     <tr class="abstract">
         <td colspan="2"></td>
         <td>
-            {{ slot.abstract }}
+            {{ slot.abstract|replace:"#\n#<br />" }}
         </td>
     </tr>
     {% endif %}

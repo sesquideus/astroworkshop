@@ -21,12 +21,14 @@
                 {% regroup slot.people by current_affiliations as affiliated %}
                 {% for affs, people in affiliated %}
                     <span class="author">
-                        {{ people|join:", " }}
+                        {% for person in people %}
+                            {{ person.get_full_name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
                     </span>
                     <br />
                     <span class="affiliation">
                         {% for aff in affs %}
-                        {{ aff.full_name }} <br />
+                            {{ aff.full_name }}<br />
                         {% endfor %}
                     </span>
                     <br />

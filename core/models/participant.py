@@ -17,17 +17,31 @@ class ParticipantQuerySet(models.QuerySet):
             ),
         )
 
+    def with_all_affiliations(self):
+        return self.prefetch_related(
+            Prefetch(
+                'institutes',
+                to_attr='all_affiliations',
+            )
+        )
+
     def with_current_affiliations(self, date):
         return self.prefetch_related(
             Prefetch(
-                'affiliations',
-                queryset=Institute.objects.exclude(Q(affiliation__start__gte=date) | Q(affiliation__end__lte=date)).distinct(),
+                'institutes',
+                queryset=Institute.objects.filter(
+                    (Q(affiliation__start__lte=date) | Q(affiliation__start=None)) & (Q(affiliation__end__gte=date) | Q(affiliation__end=None))
+                ).distinct(),
                 to_attr='current_affiliations',
             ),
         )
 
     def for_event(self, event_code):
-        return self.filter(participations__code=event_code)
+        return self.filter(events__code=event_code)
+
+
+class ParticipantManager(UserManager.from_queryset(ParticipantQuerySet)):
+    pass
 
 
 class Participant(AbstractUser):
@@ -37,14 +51,14 @@ class Participant(AbstractUser):
     class Meta:
         ordering = ['last_name', 'first_name']
 
-    objects = UserManager.from_queryset(ParticipantQuerySet)()
+    objects = ParticipantManager()
 
-    affiliations = models.ManyToManyField(
+    institutes = models.ManyToManyField(
         'Institute',
         through='Affiliation',
         related_name = 'people',
     )
-    participations = models.ManyToManyField(
+    events = models.ManyToManyField(
         'Event',
         through='Participation',
         related_name = 'participants',
@@ -52,4 +66,4 @@ class Participant(AbstractUser):
     about = models.TextField(blank=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.last_name}, {self.first_name}"

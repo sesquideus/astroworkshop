@@ -1,4 +1,5 @@
 import django
+import datetime
 import locale
 import unicodedata
 
@@ -15,7 +16,8 @@ class ListView(django.views.generic.ListView):
     template_name = 'core/list-participants.html'
 
     def get_queryset(self):
-        return self.model.objects.for_event(self.kwargs['year']).order_by('last_name')
+        year = self.kwargs['year']
+        return self.model.objects.for_event(year).with_current_affiliations(datetime.date.today()).order_by('last_name')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -31,4 +33,4 @@ class ParticipantView(django.views.generic.DetailView):
     slug_url_kwarg = 'username'
 
     def get_queryset(self):
-        return self.model.objects.with_talks()
+        return self.model.objects.with_talks().with_current_affiliations(datetime.date.today())

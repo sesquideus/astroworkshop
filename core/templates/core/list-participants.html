@@ -13,7 +13,7 @@
                 </td>
                 <td>
                     <span class="affiliation">
-                        {% for aff in participant.affiliations.all %}
+                        {% for aff in participant.current_affiliations %}
                             {{ aff.full_name }}
                         {% endfor %}
                     </span>
