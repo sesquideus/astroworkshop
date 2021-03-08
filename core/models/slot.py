@@ -4,7 +4,7 @@ from django.db.models import Count, Prefetch, F, OuterRef
 
 
 def presentation_filename(instance, filename):
-    return f"{instance.event.code}/{instance.person.username}/filename"
+    return f"{instance.event.code}/{instance.id}/{filename}"
 
 
 class SlotQuerySet(models.QuerySet):
