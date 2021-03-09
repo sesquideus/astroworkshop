@@ -1,6 +1,12 @@
 {% extends 'core/base.html' %}
 {% load astro tz %}
 
+{% block pagetitle %}
+    <h2>
+        Program ASTRO workshopu {{ event.code }}
+    </h2>
+{% endblock pagetitle %}
+
 {% block page %}
     <table class="programme">
         {% regroup slots by date as slots_date %}

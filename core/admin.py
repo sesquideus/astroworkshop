@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.db import models
 from django.forms.widgets import TextInput, NumberInput
+from django.utils.html import format_html, format_html_join
 
 import core
 import datetime
@@ -69,7 +70,7 @@ class SlotAdmin(admin.ModelAdmin):
     end.short_description = "End"
 
     def people(self, obj):
-        return ', '.join([x.__str__() for x in obj.people])
+        return format_html_join('\n', "<li>{}</li>", [(x.__str__(),) for x in obj.people])
     people.short_description = "Authors"
 
 

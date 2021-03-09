@@ -3,8 +3,9 @@ import django
 import pytz
 from django.db.models import F, Q, ExpressionWrapper, Func, When, DateTimeField
 from django.db.models.functions import TruncDay
+from django.shortcuts import get_object_or_404
 
-from core.models import Slot
+from core.models import Slot, Event
 
 
 class ProgrammeView(django.views.generic.ListView):
@@ -13,13 +14,18 @@ class ProgrammeView(django.views.generic.ListView):
     template_name = 'core/programme.html'
 
     def get_queryset(self):
+        self.event = get_object_or_404(Event, code=self.kwargs.get('year', datetime.date.today().year))
+
         return self.model.objects \
             .with_people() \
-            .filter(event__code=self.kwargs.get('year', "2021")) \
+            .filter(event__code=self.event.code) \
             .annotate(
                 date=TruncDay('start'),
             ) \
             .order_by('start', 'duration')
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs) | {'event': self.event}
 
 
 class DayProgrammeView(ProgrammeView):

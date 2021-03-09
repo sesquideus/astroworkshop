@@ -3,38 +3,39 @@
 
 {% block page %}
     <div class="title">
-        <h2>
+        <h2 class="slot-title">
             {{ slot.title }}
         </h2>
         <div class="time">
-            <span class="time">
-                {{ slot.start|timezone:"Europe/Bratislava"|date:"l H:i" }}
-                {% if slot.start and slot.duration > 0 %}
-                    &ndash;&nbsp;{{ slot.start|add_minutes:slot.duration|timezone:"Europe/Bratislava"|time:"H:i" }}
-                {% endif %}
-            </span>
+            <div class="time-inner">
+                <span class="time">
+                    {{ slot.start|timezone:"Europe/Bratislava"|date:"l Y-m-d" }}
+                    {{ slot.start|timezone:"Europe/Bratislava"|date:"H:i" }}
+                    {% if slot.start and slot.duration > 0 %}
+                        &ndash;&nbsp;{{ slot.start|add_minutes:slot.duration|timezone:"Europe/Bratislava"|time:"H:i" }}
+                    {% endif %}
+                </span>
+            </div>
         </div>
     </div>
-    <div class="authortime">
-        <div class="author">
-            {% if slot.people_count > 0 %}
-                {% regroup slot.people by current_affiliations as affiliated %}
-                {% for affs, people in affiliated %}
-                    <span class="author">
+    <div class="authors">
+        {% if slot.people_count > 0 %}
+            {% regroup slot.people by current_affiliations as affiliated %}
+            {% for affs, people in affiliated %}
+                <div class="author">
+                    <div class="name">
                         {% for person in people %}
                             {{ person.get_full_name }}{% if not forloop.last %}, {% endif %}
                         {% endfor %}
-                    </span>
-                    <br />
-                    <span class="affiliation">
+                    </div>
+                    <div class="affiliation">
                         {% for aff in affs %}
                             {{ aff.full_name }}<br />
                         {% endfor %}
-                    </span>
-                    <br />
-                {% endfor %}
-            {% endif %}
-        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
     <p class="abstract">
         {% if slot.abstract %}
@@ -47,4 +48,9 @@
             {% endif %}
         {% endif %}
     </p>
+    {% if slot.presentation %}
+        <p>
+            <a href="{{ slot.presentation.url }}">prezentácia</a>
+        </p>
+    {% endif %}
 {% endblock %}
