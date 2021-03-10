@@ -3,6 +3,7 @@ from django.db.models import Prefetch, F, Q
 from django.contrib.auth.models import AbstractUser, UserManager
 
 from .slot import Slot
+from .event import Event
 from .affiliation import Affiliation
 from .institute import Institute
 
@@ -17,10 +18,20 @@ class ParticipantQuerySet(models.QuerySet):
             ),
         )
 
+    def with_events(self):
+        return self.prefetch_related(
+            Prefetch(
+                'events',
+                queryset=Event.objects.order_by('start'),
+                to_attr='all_participations',
+            )
+        )
+
     def with_all_affiliations(self):
         return self.prefetch_related(
             Prefetch(
                 'institutes',
+                queryset=Institute.objects.order_by('affiliation__start'),
                 to_attr='all_affiliations',
             )
         )

@@ -40,10 +40,17 @@ class SlotInline(admin.TabularInline):
 class ParticipantAdmin(admin.ModelAdmin):
     inlines = [AffiliationInline, ParticipationInline]
 
-    list_display = ['get_full_name', 'list_affiliations']
+    list_display = ['get_full_name', 'list_affiliations', 'list_participations']
+
+    def get_queryset(self, request):
+        return core.models.Participant.objects.with_events().with_all_affiliations()
+
+    def list_participations(self, obj):
+        return ', '.join([x.code for x in obj.all_participations])
+    list_participations.short_description = "List of participations"
 
     def list_affiliations(self, obj):
-        return ', '.join([x.short_name for x in obj.institutes.all()])
+        return ', '.join([x.short_name for x in obj.all_affiliations])
     list_affiliations.short_description = "List of affiliations"
 
 
