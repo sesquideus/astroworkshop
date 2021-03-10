@@ -202,8 +202,8 @@ h2 {
 h3 {
     font-size: 125%;
     font-weight: 500;
-    padding-top: 8mm;
-    padding-bottom: 5mm;
+    padding-top: 3mm;
+    padding-bottom: 2mm;
     line-height: 1.5;
 }
 
@@ -220,12 +220,6 @@ div.time {
     width: 20%;
     float: right;
     vertical-align: middle;
-}
-
-span.author {
-}
-
-span.affiliation {
 }
 
 p {
@@ -255,7 +249,7 @@ div.time div.time-inner {
 div.time span.time {
     display: block;
     position: absolute;
-    height: 2em;
+    height: 15mm;
     width: 200px;
     font-size: 120%;
     top: 50%;
@@ -353,10 +347,12 @@ table td a, table td a:visited {
 
 table tr.category-O {
     color: hsl(240, 90%, 30%);
+    background-image: linear-gradient(to right, transparent 0%, hsla(240, 90%, 30%, 5%) 10%, hsla(240, 90%, 30%, 5%) 90%, transparent 100%);
 }
 
 table tr.category-M {
     color: hsl(0, 90%, 40%);
+    background-image: linear-gradient(to right, transparent 0%, hsla(0, 90%, 40%, 5%) 10%, hsla(0, 90%, 40%, 5%) 90%, transparent 100%);
     text-transform: uppercase;
 }
 
@@ -366,6 +362,7 @@ table tr.category-T {
 
 table tr.category-W {
     color: hsl(100, 90%, 30%);
+    background-image: linear-gradient(to right, transparent 0%, hsla(100, 90%, 40%, 5%) 10%, hsla(100, 90%, 40%, 5%) 90%, transparent 100%);
     text-transform: uppercase;
 }
 
