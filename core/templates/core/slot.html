@@ -9,7 +9,7 @@
         <div class="time">
             <div class="time-inner">
                 <span class="time">
-                    {{ slot.start|timezone:"Europe/Bratislava"|date:"l Y-m-d" }}
+                    {{ slot.start|timezone:"Europe/Bratislava"|date:"l Y-m-d"|replace:"#-#&dash;" }}
                     {{ slot.start|timezone:"Europe/Bratislava"|date:"H:i" }}
                     {% if slot.start and slot.duration > 0 %}
                         &ndash;&nbsp;{{ slot.start|add_minutes:slot.duration|timezone:"Europe/Bratislava"|time:"H:i" }}

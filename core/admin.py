@@ -43,7 +43,7 @@ class ParticipantAdmin(admin.ModelAdmin):
     list_display = ['get_full_name', 'list_affiliations']
 
     def list_affiliations(self, obj):
-        return ', '.join([x.short_name for x in obj.affiliations.all()])
+        return ', '.join([x.short_name for x in obj.institutes.all()])
     list_affiliations.short_description = "List of affiliations"
 
 
@@ -51,7 +51,7 @@ class ParticipantAdmin(admin.ModelAdmin):
 class SlotAdmin(admin.ModelAdmin):
     ordering = ['start']
 
-    list_display = ['title', 'people', 'start', 'duration', 'note', 'end']
+    list_display = ['title', 'people', 'start', 'duration', 'note', 'end', 'presentation']
     list_filter = ['event']
 
     def get_queryset(self, request):
