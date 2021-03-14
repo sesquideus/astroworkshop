@@ -5,12 +5,12 @@
     <h2>
         {{ participant.get_full_name }}
     </h2>
-    <div class="authortime">
-        <span class="affiliation">
-            {% for aff in participant.affiliations.all %}
+    <div class="authors author">
+        <div class="affiliation">
+            {% for aff in participant.institutes.all %}
                 {{ aff.full_name }}
             {% endfor %}
-        </span>
+        </div>
     </div>
     <p>
         {{ participant.about }}
@@ -26,8 +26,12 @@
                 (online)
             {% endif %}
         </h3>
+        <ul>
         {% for talk in talks %}
-            <a href="{% url 'slot' talk.id %}">{{ talk.title }}</a>
+            <li>
+                <a href="{% url 'slot' talk.id %}">{{ talk.title }}</a>
+            </li>
         {% endfor %}
+        </ul>
     {% endfor %}
 {% endblock %}

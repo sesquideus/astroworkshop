@@ -213,7 +213,6 @@ div.authortime {
 
 div.author {
     line-height: 1.5;
-    width: 80%;
 }
 
 div.time {
@@ -238,6 +237,7 @@ div.title h2 {
 
 div.title div.time {
     flex: 0 0 200px;
+    padding-bottom: 5mm;
 }
 
 div.time div.time-inner {

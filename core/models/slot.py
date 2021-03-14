@@ -47,6 +47,7 @@ class Slot(models.Model):
     person = models.ManyToManyField('Participant', related_name='slots', blank=True)
     event = models.ForeignKey('Event', null=True, blank=True, on_delete=models.CASCADE)
     category = models.CharField(max_length=1, choices=CATEGORIES, default=CATEGORY_TALK)
+    online = models.BooleanField(null=False, blank=False, default=False)
     presentation = models.FileField(
         null=True,
         blank=True,
