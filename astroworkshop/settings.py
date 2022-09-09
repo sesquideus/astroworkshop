@@ -137,7 +137,7 @@ USE_I18N = True
 USE_L10N = False
 
 USE_TZ = True
-
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -170,5 +170,5 @@ if os.environ.get('DJANGO_DEVELOPMENT'):
     DEBUG = True
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-    ALLOWED_HOSTS = ['192.168.153.128', '192.168.248.128']
+    ALLOWED_HOSTS = ['127.0.0.1', '192.168.153.128', '192.168.248.128']
     INTERNAL_IPS = ['127.0.0.1', '192.168.248.128']

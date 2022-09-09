@@ -14,7 +14,7 @@ class SlotQuerySet(models.QuerySet):
         return self.prefetch_related(
             Prefetch(
                 'person',
-                queryset=Participant.objects.with_current_affiliations(F('people__slots__start')),
+                queryset=Participant.objects.with_current_affiliations(F('people__slots__start')).with_full_name(),
                 to_attr='people'
             )
         ).annotate(
@@ -45,7 +45,7 @@ class Slot(models.Model):
     duration = models.PositiveIntegerField(null=False)
     note = models.CharField(blank=True, max_length=256)
     person = models.ManyToManyField('Participant', related_name='slots', blank=True)
-    event = models.ForeignKey('Event', null=True, blank=True, on_delete=models.CASCADE)
+    event = models.ForeignKey('Event', null=True, blank=True, related_name='slots', on_delete=models.CASCADE)
     category = models.CharField(max_length=1, choices=CATEGORIES, default=CATEGORY_TALK)
     online = models.BooleanField(null=False, blank=False, default=False)
     presentation = models.FileField(

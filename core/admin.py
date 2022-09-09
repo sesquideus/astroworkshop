@@ -1,10 +1,14 @@
 from django.contrib import admin
 from django.db import models
+from django.db.models import Prefetch
+from django.forms import Textarea
 from django.forms.widgets import TextInput, NumberInput
 from django.utils.html import format_html, format_html_join
 
 import core
 import datetime
+
+from core.models import Participant
 
 # Register your models here.
 
@@ -24,14 +28,23 @@ class ParticipationInline(admin.TabularInline):
     extra = 1
 
 
+class ParticipantInline(admin.TabularInline):
+    model = core.models.Participation
+    fields = ('person', 'online', 'organizer')
+    extra = 1
+
+
 class SlotInline(admin.TabularInline):
     model = core.models.Slot
     fields = ('person', 'start', 'duration', 'title', 'abstract', 'note', 'category')
     extra = 3
-
+ 
     formfield_overrides = {
         models.CharField: {
-            'widget': TextInput(attrs={'size': '80'}),
+            'widget': TextInput(attrs={'size': '30'}),
+        },
+        models.TextField: {
+            'widget': Textarea(attrs={'size': '40'}),
         },
     }
 
@@ -83,12 +96,19 @@ class SlotAdmin(admin.ModelAdmin):
 
 @admin.register(core.models.Participation)
 class ParticipationAdmin(admin.ModelAdmin):
-    pass
+    def get_queryset(self, request):
+        return self.model._default_manager.prefetch_related('person', 'event')
+
 
 @admin.register(core.models.Event)
 class EventAdmin(admin.ModelAdmin):
-    inlines = [SlotInline]
+    inlines = [SlotInline, ParticipantInline]
+
+#    def get_queryset(self, request):
+#        return core.models.Event.objects.prefetch_related('slots__person')
+
 
 @admin.register(core.models.Affiliation)
 class AffiliationAdmin(admin.ModelAdmin):
-    pass
+    def get_queryset(self, request):
+        return self.model._default_manager.prefetch_related('person', 'institute')

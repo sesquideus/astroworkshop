@@ -1,5 +1,6 @@
 from django.db import models
-from django.db.models import Prefetch, F, Q
+from django.db.models import Prefetch, F, Q, Value
+from django.db.models.functions import Concat
 from django.contrib.auth.models import AbstractUser, UserManager
 
 from .slot import Slot
@@ -50,9 +51,13 @@ class ParticipantQuerySet(models.QuerySet):
     def for_event(self, event_code):
         return self.filter(events__code=event_code)
 
+    def with_full_name(self):
+        return self.annotate(full_name=Concat('last_name', Value(', '), 'first_name'))
+
 
 class ParticipantManager(UserManager.from_queryset(ParticipantQuerySet)):
-    pass
+    def get_queryset(self):
+        return super().get_queryset().annotate(full_name=Concat('last_name', Value(', '), 'first_name'))
 
 
 class Participant(AbstractUser):
