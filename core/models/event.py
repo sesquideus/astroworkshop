@@ -1,3 +1,5 @@
+import datetime
+from django.apps import apps
 from django.db import models
 from django.db.models import Prefetch
 
@@ -15,10 +17,19 @@ class EventQuerySet(models.QuerySet):
             queryset=Slot.objects.with_people(),
         ))
 
+    def with_participants(self):
+        Participant = apps.get_model('core.Participant')
+        return self.prefetch_related(Prefetch(
+            'participants',
+            queryset=Participant.objects.with_current_affiliations(datetime.date.today()),
+        ))
+
 
 class Event(models.Model):
     class Meta:
         ordering = ('start', 'name')
+        verbose_name = 'workshop'
+        verbose_name_plural = 'workshopy'
 
     objects = EventQuerySet.as_manager()
 

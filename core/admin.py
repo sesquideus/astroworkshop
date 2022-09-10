@@ -1,3 +1,4 @@
+import django
 from django.contrib import admin
 from django.db import models
 from django.db.models import Prefetch
@@ -13,7 +14,7 @@ from core.models import Participant
 # Register your models here.
 
 @admin.register(core.models.Institute)
-class InstitudeAdmin(admin.ModelAdmin):
+class InstituteAdmin(admin.ModelAdmin):
     pass
 
 
@@ -21,24 +22,40 @@ class AffiliationInline(admin.TabularInline):
     model = core.models.Affiliation
     extra = 1
 
+    liast_select_related = True
+
 
 class ParticipationInline(admin.TabularInline):
     model = core.models.Participation
     fields = ('event', 'online', 'organizer')
     extra = 1
 
+    list_select_related = True
+
 
 class ParticipantInline(admin.TabularInline):
     model = core.models.Participation
     fields = ('person', 'online', 'organizer')
+    verbose_name = 'Participant'
+    verbose_name_plural = 'Participants'
+    raw_id_fields = ['person']
+
     extra = 1
+
+
+class SlotFormset(django.forms.BaseInlineFormSet):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.queryset = self.queryset.prefetch_related('person', 'event')
 
 
 class SlotInline(admin.TabularInline):
     model = core.models.Slot
-    fields = ('person', 'start', 'duration', 'title', 'abstract', 'note', 'category')
+    fields = ('category', 'person', 'start', 'duration', 'title', 'abstract', 'note')
     extra = 3
- 
+
+    formset = SlotFormset
+
     formfield_overrides = {
         models.CharField: {
             'widget': TextInput(attrs={'size': '30'}),
@@ -51,9 +68,8 @@ class SlotInline(admin.TabularInline):
 
 @admin.register(core.models.Participant)
 class ParticipantAdmin(admin.ModelAdmin):
-    inlines = [AffiliationInline, ParticipationInline]
-
     list_display = ['get_full_name', 'list_affiliations', 'list_participations']
+    form = django.contrib.auth.forms.UserChangeForm
 
     def get_queryset(self, request):
         return core.models.Participant.objects.with_events().with_all_affiliations()
@@ -73,6 +89,7 @@ class SlotAdmin(admin.ModelAdmin):
 
     list_display = ['title', 'people', 'start', 'duration', 'note', 'end', 'presentation']
     list_filter = ['event']
+    filter_vertical = ['person']
 
     def get_queryset(self, request):
         return core.models.Slot.objects.with_people()
@@ -86,7 +103,6 @@ class SlotAdmin(admin.ModelAdmin):
             return None
         else:
             return obj.start + datetime.timedelta(minutes=obj.duration)
-
     end.short_description = "End"
 
     def people(self, obj):
@@ -94,18 +110,19 @@ class SlotAdmin(admin.ModelAdmin):
     people.short_description = "Authors"
 
 
-@admin.register(core.models.Participation)
-class ParticipationAdmin(admin.ModelAdmin):
-    def get_queryset(self, request):
-        return self.model._default_manager.prefetch_related('person', 'event')
-
+#@admin.register(core.models.Participation)
+#class ParticipationAdmin(admin.ModelAdmin):
+#    def get_queryset(self, request):
+#        return self.model._default_manager.prefetch_related('person', 'event')
+#
 
 @admin.register(core.models.Event)
 class EventAdmin(admin.ModelAdmin):
-    inlines = [SlotInline, ParticipantInline]
+    inlines = [ParticipantInline]
+    filter_vertical = ['participants']
 
-#    def get_queryset(self, request):
-#        return core.models.Event.objects.prefetch_related('slots__person')
+    def get_queryset(self, request):
+        return self.model.objects.with_slots().with_participants()
 
 
 @admin.register(core.models.Affiliation)

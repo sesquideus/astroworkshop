@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import Prefetch, F, Q, Value
 from django.db.models.functions import Concat
 from django.contrib.auth.models import AbstractUser, UserManager
+from django.contrib.auth.base_user import BaseUserManager
 
 from .slot import Slot
 from .event import Event
@@ -55,7 +56,7 @@ class ParticipantQuerySet(models.QuerySet):
         return self.annotate(full_name=Concat('last_name', Value(', '), 'first_name'))
 
 
-class ParticipantManager(UserManager.from_queryset(ParticipantQuerySet)):
+class ParticipantManager(BaseUserManager.from_queryset(ParticipantQuerySet)):
     def get_queryset(self):
         return super().get_queryset().annotate(full_name=Concat('last_name', Value(', '), 'first_name'))
 
@@ -66,6 +67,8 @@ class Participant(AbstractUser):
     """
     class Meta:
         ordering = ['last_name', 'first_name']
+        verbose_name = 'účastník'
+        verbose_name_plural = 'účastníci'
 
     objects = ParticipantManager()
 

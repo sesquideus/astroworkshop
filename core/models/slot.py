@@ -24,6 +24,8 @@ class SlotQuerySet(models.QuerySet):
 class Slot(models.Model):
     class Meta:
         ordering = ['start', 'duration']
+        verbose_name = 'slot'
+        verbose_name_plural = 'sloty'
 
     objects = SlotQuerySet.as_manager()
 
@@ -44,7 +46,7 @@ class Slot(models.Model):
     start = models.DateTimeField(null=True, blank=True)
     duration = models.PositiveIntegerField(null=False)
     note = models.CharField(blank=True, max_length=256)
-    person = models.ManyToManyField('Participant', related_name='slots', blank=True)
+    person = models.ManyToManyField('Participant', related_name='slots', blank=True, verbose_name='účastník')
     event = models.ForeignKey('Event', null=True, blank=True, related_name='slots', on_delete=models.CASCADE)
     category = models.CharField(max_length=1, choices=CATEGORIES, default=CATEGORY_TALK)
     online = models.BooleanField(null=False, blank=False, default=False)

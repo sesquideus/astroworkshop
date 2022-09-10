@@ -3,10 +3,10 @@ from django.db import models
 
 class Participation(models.Model):
     class Meta:
-        ordering = ['event']
+        ordering = ['event', 'person']
 
-    person = models.ForeignKey('Participant', on_delete=models.CASCADE, null=False, related_name='participations')
     event = models.ForeignKey('Event', on_delete=models.CASCADE, null=False)
+    person = models.ForeignKey('Participant', on_delete=models.CASCADE, null=False, related_name='participations')
     online = models.BooleanField(null=False, blank=False, default=False)
     organizer = models.BooleanField(null=False, blank=False, default=False)
 

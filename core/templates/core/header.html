@@ -4,18 +4,19 @@
     <div class="title">
         <img src="{% static 'images/web_logo.png' %}" alt="Logo" class="logo" />
     </div>
+    {% now "Y" as current_year %}
     <div class="menu-strip">
         <ul class="strip">
             <li>
                 <div class="fancy-menu">
-                    <a href="{% url 'programme' year=2021 %}" data-text="Program">
+                    <a href="{% url 'programme' year=current_year %}" data-text="Program">
                         Program
                     </a>
                 </div>
             </li>
             <li>
                 <div class="fancy-menu">
-                    <a href="{% url 'participants' year=2021 %}" data-text="Účastníci">
+                    <a href="{% url 'participants' year=current_year %}" data-text="Účastníci">
                         Účastníci
                     </a>
                 </div>
