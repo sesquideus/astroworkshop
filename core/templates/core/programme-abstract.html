@@ -3,7 +3,7 @@
 
 {% block abstract %}
     {% if slot.abstract %}
-    <tr class="abstract">
+    <tr class="abstract category-{{ slot.category }}">
         <td colspan="2"></td>
         <td>
             {{ slot.abstract|replace:"#\n#<br />" }}
