@@ -43,18 +43,10 @@ class ParticipantInline(admin.TabularInline):
     extra = 1
 
 
-class SlotFormset(django.forms.BaseInlineFormSet):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.queryset = self.queryset.prefetch_related('person', 'event')
-
-
 class SlotInline(admin.TabularInline):
     model = core.models.Slot
     fields = ('category', 'person', 'start', 'duration', 'title', 'abstract', 'note')
     extra = 3
-
-    formset = SlotFormset
 
     formfield_overrides = {
         models.CharField: {
@@ -64,6 +56,9 @@ class SlotInline(admin.TabularInline):
             'widget': Textarea(attrs={'size': '40'}),
         },
     }
+
+    def get_queryset(self, request):
+        return self.model.objects.prefetch_related('person')
 
 
 @admin.register(core.models.Participant)
@@ -118,7 +113,7 @@ class SlotAdmin(admin.ModelAdmin):
 
 @admin.register(core.models.Event)
 class EventAdmin(admin.ModelAdmin):
-    inlines = [ParticipantInline]
+    inlines = [SlotInline, ParticipantInline]
     filter_vertical = ['participants']
 
     def get_queryset(self, request):
