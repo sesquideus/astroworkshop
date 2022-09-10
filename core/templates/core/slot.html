@@ -41,7 +41,7 @@
         {% if slot.abstract %}
             {{ slot.abstract|replace:"#\n#<br />" }}
         {% else %}
-            {% if slot.type == Slot.CATEGORY_TALK %}
+            {% if slot.category == Slot.CATEGORY_TALK %}
                 <span class="empty">
                     Táto prednáška nemá abstrakt.
                 </span>

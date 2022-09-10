@@ -41,20 +41,22 @@ class Slot(models.Model):
         (CATEGORY_OTHER, 'Ostatné'),
     ]
 
-    title = models.CharField(blank=True, max_length=256)
-    abstract = models.TextField(blank=True, max_length=4096)
-    start = models.DateTimeField(null=True, blank=True)
-    duration = models.PositiveIntegerField(null=False)
-    note = models.CharField(blank=True, max_length=256)
+    title = models.CharField(blank=True, max_length=256, verbose_name='názov')
+    abstract = models.TextField(blank=True, max_length=4096, verbose_name='abstrakt')
+    start = models.DateTimeField(null=True, blank=True, verbose_name='začiatok')
+    duration = models.PositiveIntegerField(null=False, verbose_name='dĺžka (min)')
+    note = models.CharField(blank=True, max_length=256, verbose_name='poznámka')
     person = models.ManyToManyField('Participant', related_name='slots', blank=True, verbose_name='účastník')
-    event = models.ForeignKey('Event', null=True, blank=True, related_name='slots', on_delete=models.CASCADE)
-    category = models.CharField(max_length=1, choices=CATEGORIES, default=CATEGORY_TALK)
-    online = models.BooleanField(null=False, blank=False, default=False)
+    event = models.ForeignKey('Event', null=True, blank=True, related_name='slots', on_delete=models.CASCADE, verbose_name='workshop')
+    category = models.CharField(max_length=1, choices=CATEGORIES, default=CATEGORY_TALK, verbose_name='kategória')
+    online = models.BooleanField(null=False, blank=False, default=False, verbose_name='online')
     presentation = models.FileField(
         null=True,
         blank=True,
         upload_to=presentation_filename,
+        verbose_name='prezentácia (PDF)'
     )
+    video = models.URLField(max_length=100, null=True, blank=True, verbose_name='URL videa')
 
     def __str__(self):
         return f"{self.title} ({self.start})"

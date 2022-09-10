@@ -9,9 +9,6 @@ from django.utils.html import format_html, format_html_join
 import core
 import datetime
 
-from core.models import Participant
-
-# Register your models here.
 
 @admin.register(core.models.Institute)
 class InstituteAdmin(admin.ModelAdmin):
@@ -22,7 +19,7 @@ class AffiliationInline(admin.TabularInline):
     model = core.models.Affiliation
     extra = 1
 
-    liast_select_related = True
+    list_select_related = True
 
 
 class ParticipationInline(admin.TabularInline):
@@ -62,24 +59,28 @@ class SlotInline(admin.TabularInline):
 
 
 @admin.register(core.models.Participant)
-class ParticipantAdmin(admin.ModelAdmin):
+class ParticipantAdmin(django.contrib.auth.admin.UserAdmin):
+    inlines = [AffiliationInline]
     list_display = ['get_full_name', 'list_affiliations', 'list_participations']
     form = django.contrib.auth.forms.UserChangeForm
+    add_form = django.contrib.auth.forms.UserCreationForm
+    readonly_fields = ['date_joined', 'last_login']
 
     def get_queryset(self, request):
         return core.models.Participant.objects.with_events().with_all_affiliations()
 
     def list_participations(self, obj):
         return ', '.join([x.code for x in obj.all_participations])
-    list_participations.short_description = "List of participations"
+    list_participations.short_description = "zoznam účastí"
 
     def list_affiliations(self, obj):
         return ', '.join([x.short_name for x in obj.all_affiliations])
-    list_affiliations.short_description = "List of affiliations"
+    list_affiliations.short_description = "zoznam afiliácií"
 
 
 @admin.register(core.models.Slot)
 class SlotAdmin(admin.ModelAdmin):
+    date_hierarchy = 'start'
     ordering = ['start']
 
     list_display = ['title', 'people', 'start', 'duration', 'note', 'end', 'presentation']
@@ -91,18 +92,18 @@ class SlotAdmin(admin.ModelAdmin):
 
     def people_count(self, obj):
         return obj.people_count
-    people_count.short_description = "Author count"
+    people_count.short_description = "počet autorov"
 
     def end(self, obj):
         if obj.start is None or obj.duration is None:
             return None
         else:
             return obj.start + datetime.timedelta(minutes=obj.duration)
-    end.short_description = "End"
+    end.short_description = "koniec"
 
     def people(self, obj):
         return format_html_join('\n', "<li>{}</li>", [(x.__str__(),) for x in obj.people])
-    people.short_description = "Authors"
+    people.short_description = "autori"
 
 
 #@admin.register(core.models.Participation)

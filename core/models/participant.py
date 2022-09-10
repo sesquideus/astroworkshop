@@ -86,3 +86,11 @@ class Participant(AbstractUser):
 
     def __str__(self):
         return f"{self.last_name}, {self.first_name}"
+
+    def get_full_name(self):
+        return f"{self.last_name}, {self.first_name}"
+    get_full_name.short_description = 'celé meno'
+
+    def get_natural_name(self):
+        return f"{self.first_name} {self.last_name}"
+

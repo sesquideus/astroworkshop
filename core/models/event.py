@@ -33,11 +33,11 @@ class Event(models.Model):
 
     objects = EventQuerySet.as_manager()
 
-    code = models.CharField(max_length=32, unique=True)
-    name = models.CharField(max_length=32, unique=True)
-    start = models.DateTimeField()
-    end = models.DateTimeField()
-    pdf_programme = models.FileField(null=True, blank=True, upload_to=event_filename)
+    code = models.CharField(max_length=32, unique=True, verbose_name='kód')
+    name = models.CharField(max_length=32, unique=True, verbose_name='názov')
+    start = models.DateTimeField(verbose_name='začiatok')
+    end = models.DateTimeField(verbose_name='koniec')
+    pdf_programme = models.FileField(null=True, blank=True, upload_to=event_filename, verbose_name='program (PDF)')
 
     def __str__(self):
         return self.name

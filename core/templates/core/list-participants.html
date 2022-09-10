@@ -9,7 +9,7 @@
         {% for participant in participants %}
             <tr>
                 <td>
-                    <a href="{% url 'participant' username=participant.username %}">{{ participant.get_full_name }}</a>
+                    <a href="{% url 'participant' username=participant.username %}">{{ participant.get_natural_name }}</a>
                 </td>
                 <td>
                     <span class="affiliation">
