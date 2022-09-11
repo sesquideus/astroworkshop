@@ -8,7 +8,7 @@ verify_ssl = true
 [packages]
 jinja2 = "*"
 pyyaml = "*"
-django = "*"
+django = ">=4.1"
 uwsgi = "*"
 ipython = "*"
 django-debug-toolbar = "*"
