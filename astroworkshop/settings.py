@@ -156,7 +156,7 @@ MEDIA_ROOT = '/var/www/astroworkshop/media/'
 MEDIA_URL = '/files/'
 
 
-DATETIME_FORMAT = 'Y-m-d H:i:s'
+DATETIME_FORMAT = 'Y-m-d H:i'
 DATETIME_INPUT_FORMATS = [
     '%Y-%m-%d %H:%M:%S',
     '%Y-%m-%d %H:%M',

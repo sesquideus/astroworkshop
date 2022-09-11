@@ -61,6 +61,7 @@ class SlotInline(admin.TabularInline):
 @admin.register(core.models.Participant)
 class ParticipantAdmin(django.contrib.auth.admin.UserAdmin):
     inlines = [AffiliationInline]
+    ordering = ['last_name', 'first_name']
     list_display = ['get_full_name', 'list_affiliations', 'list_participations']
     form = django.contrib.auth.forms.UserChangeForm
     add_form = django.contrib.auth.forms.UserCreationForm
@@ -84,8 +85,8 @@ class SlotAdmin(admin.ModelAdmin):
     ordering = ['start']
 
     list_display = ['title', 'people', 'start', 'duration', 'note', 'end', 'presentation']
-    list_filter = ['event']
-    filter_vertical = ['person']
+    list_filter = ['event', 'category']
+    filter_horizontal = ['person']
 
     def get_queryset(self, request):
         return core.models.Slot.objects.with_people()
