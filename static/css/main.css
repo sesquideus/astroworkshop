@@ -132,7 +132,7 @@ div.menu-strip {
 div.menu-strip ul li {
     height: 100%;
     width: 40mm;
-    padding: 0mm 5mm;
+    padding: 0mm 0mm;
 }
 
 div.menu-strip ul li a {
@@ -153,7 +153,7 @@ div.menu-strip ul li a:after {
     left: 0px;
     width: 100%;
     height: 100%;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.4s ease-in-out;
 }
 
 div.menu-strip ul li a:before {

@@ -21,6 +21,15 @@
                     </a>
                 </div>
             </li>
+            {% if request.user.is_staff %}
+                <li>
+                    <div class="fancy-menu">
+                        <a href="{% url 'admin:index' %}" data-text="Admin">
+                            Admin
+                        </a>
+                    </div>
+                </li>
+            {% endif %}
         </ul>
     </div>
 

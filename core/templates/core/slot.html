@@ -20,7 +20,7 @@
     </div>
     <div class="authors">
         {% if slot.people_count > 0 %}
-            {% regroup slot.people by current_affiliations as affiliated %}
+            {% regroup slot.sorted_authors by current_affiliations as affiliated %}
             {% for affs, people in affiliated %}
                 <div class="author">
                     <div class="name">

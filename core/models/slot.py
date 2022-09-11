@@ -1,3 +1,5 @@
+import unicodedata
+
 from django.apps import apps
 from django.db import models
 from django.db.models import Count, Prefetch, F, OuterRef
@@ -60,3 +62,8 @@ class Slot(models.Model):
 
     def __str__(self):
         return f"{self.title} ({self.start})"
+
+    def sorted_authors(self):
+        return sorted(
+            self.people, key=lambda x: unicodedata.normalize('NFKD', x.last_name)
+        )
