@@ -32,7 +32,7 @@ div.entire {
        linear-gradient(to bottom, hsl(0, 0%, 95%) 1px, transparent 5px);
 }
 
-div.header, div.footer {
+div.bar {
     width: 100%;
     background-color: hsl(0, 0%, 10%);
     color: white;
@@ -92,10 +92,14 @@ div.header img.logo {
     height: 30mm;
 }
 
-div.header a, div.header a:visited {
+div.bar a, div.bar a:visited {
     text-decoration: none;
     font-weight: bold;
     font-size: 100%;
+    color: hsl(0, 0%, 50%);
+}
+
+div.header a, div.header a:visited {
     color: white;
 }
 

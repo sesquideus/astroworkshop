@@ -130,7 +130,7 @@ AUTH_USER_MODEL = 'core.Participant'
 
 LANGUAGE_CODE = 'sk-SK'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Bratislava'
 
 USE_I18N = True
 
