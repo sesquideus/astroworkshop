@@ -4,7 +4,10 @@ from django.db import models
 from django.db.models import Prefetch
 from django.forms import Textarea
 from django.forms.widgets import TextInput, NumberInput
-from django.utils.html import format_html, format_html_join
+from django.utils.html import format_html_join
+
+from django.contrib.auth.admin import GroupAdmin
+from django.contrib.auth.models import Group
 
 import core
 import datetime
@@ -116,7 +119,6 @@ class SlotAdmin(admin.ModelAdmin):
 @admin.register(core.models.Event)
 class EventAdmin(admin.ModelAdmin):
     inlines = [SlotInline, ParticipantInline]
-    filter_vertical = ['participants']
 
     def get_queryset(self, request):
         return self.model.objects.with_slots().with_participants()
@@ -126,3 +128,10 @@ class EventAdmin(admin.ModelAdmin):
 class AffiliationAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         return self.model._default_manager.prefetch_related('person', 'institute')
+
+
+admin.site.unregister(Group)
+@admin.register(Group)
+class NewGroupAdmin(GroupAdmin):
+    list_display = ['name', 'user']
+    filter_horizontal = ['permissions', 'user']
