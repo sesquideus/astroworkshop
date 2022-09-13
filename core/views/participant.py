@@ -5,7 +5,7 @@ import unicodedata
 
 from functools import cmp_to_key
 
-from core.models import Participant
+from core.models import Participant, Event
 
 locale.setlocale(locale.LC_ALL, "")
 
@@ -24,6 +24,7 @@ class ListView(django.views.generic.ListView):
         context[self.context_object_name] = sorted(
             context[self.context_object_name], key=lambda x: unicodedata.normalize('NFKD', x.last_name)
         )
+        context['event'] = Event.objects.get(code=self.kwargs['year'])
         return context
 
 

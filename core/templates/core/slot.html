@@ -5,6 +5,9 @@
     <div class="title">
         <h2 class="slot-title">
             {{ slot.title }}
+            {% if perms.core.change_slot %}
+                <a class="admin" href="{% url 'admin:core_slot_change' slot.id %}">&#x270E;</a>
+            {% endif %}
         </h2>
         <div class="time">
             <div class="time-inner">

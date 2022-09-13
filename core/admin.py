@@ -133,5 +133,5 @@ class AffiliationAdmin(admin.ModelAdmin):
 admin.site.unregister(Group)
 @admin.register(Group)
 class NewGroupAdmin(GroupAdmin):
-    list_display = ['name', 'user']
+    list_display = ['name']
     filter_horizontal = ['permissions', 'user']

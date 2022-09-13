@@ -4,6 +4,9 @@
 {% block pagetitle %}
     <h2>
         Program ASTRO workshopu {{ event.code }}
+        {% if perms.core.change_event %}
+            <a class="admin" href="{% url 'admin:core_event_change' event.id %}">&#x270E;</a>
+        {% endif %}
     </h2>
 {% endblock pagetitle %}
 
@@ -44,6 +47,8 @@
                     {% endblock abstract %}
                 </tr>
             {% endfor %}
+        {% empty %}
+            <span class="empty">V tento deň sa nekoná žiadna akcia.</span>
         {% endfor %}
     </table>
 {% endblock page %}

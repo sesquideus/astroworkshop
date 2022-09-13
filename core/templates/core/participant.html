@@ -4,6 +4,9 @@
 {% block page %}
     <h2>
         {{ participant.get_natural_name }}
+        {% if perms.core.change_event %}
+            <a class="admin" href="{% url 'admin:core_participant_change' participant.id %}">&#x270E;</a>
+        {% endif %}
     </h2>
     <div class="authors author">
         <div class="affiliation">

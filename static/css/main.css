@@ -349,25 +349,27 @@ table td a, table td a:visited {
     color: inherit;
 }
 
-table tr.category-O {
+tr.category-O {
     color: hsl(240, 90%, 30%);
     background-image: linear-gradient(to right, transparent 0%, hsla(240, 90%, 30%, 5%) 10%, hsla(240, 90%, 30%, 5%) 90%, transparent 100%);
 }
 
-table tr.category-M {
+tr.category-M {
     color: hsl(0, 90%, 40%);
     background-image: linear-gradient(to right, transparent 0%, hsla(0, 90%, 40%, 5%) 10%, hsla(0, 90%, 40%, 5%) 90%, transparent 100%);
+}
+
+tr.category-M td.title, table tr.category-M td.title {
     text-transform: uppercase;
 }
 
-table tr.category-T {
+tr.category-T {
     color: hsl(225, 0%, 20%);
 }
 
-table tr.category-W {
+tr.category-W {
     color: hsl(100, 90%, 30%);
     background-image: linear-gradient(to right, transparent 0%, hsla(100, 90%, 40%, 5%) 10%, hsla(100, 90%, 40%, 5%) 90%, transparent 100%);
-    text-transform: uppercase;
 }
 
 abbr {
@@ -382,4 +384,9 @@ span.empty {
 p.abstract {
     padding-top: 0mm;
     padding-bottom: 3mm;
+}
+
+a.admin {
+    text-decoration: none;
+    text-color: inherit;
 }
