@@ -1,10 +1,12 @@
 {% load static %}
 
-<div class="bar header">
+{% now "Y" as current_year %}
+<div class="bar header year{{ current_year }}">
+    {% comment %}
     <div class="title">
         <img src="{% static 'images/web_logo.png' %}" alt="Logo" class="logo" />
     </div>
-    {% now "Y" as current_year %}
+    {% endcomment %}
     <div class="menu-strip">
         <ul class="strip">
             <li>

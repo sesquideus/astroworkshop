@@ -16,7 +16,9 @@
         <link rel="icon" type="image/png" href="{% static "images/favicon.png" %}" />
         {% block headextra %}{% endblock %}
     </head>
-    <body>
+
+    {% now "Y" as current_year %}
+    <body class="year{{ current_year }}">
         <div class="wrapper">
             <div class="entire">
                 {% include 'core/header.html' %}

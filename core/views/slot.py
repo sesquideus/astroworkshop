@@ -3,18 +3,17 @@ import django
 import pytz
 from django.db.models import F, Q, ExpressionWrapper, Func, When, DateTimeField
 from django.db.models.functions import TruncDay
-from django.shortcuts import get_object_or_404
 
-from core.models import Slot, Event
+import core
 
 
 class ProgrammeView(django.views.generic.ListView):
-    model = Slot
+    model = core.models.Slot
     context_object_name = 'slots'
     template_name = 'core/programme.html'
 
     def get_queryset(self):
-        self.event = get_object_or_404(Event, code=self.kwargs.get('year', datetime.date.today().year))
+        self.event = django.shortcuts.get_object_or_404(core.models.Event, code=self.kwargs.get('year', datetime.date.today().year))
 
         return self.model.objects \
             .with_people() \
@@ -38,7 +37,7 @@ class DayProgrammeView(ProgrammeView):
 
 
 class SlotView(django.views.generic.DetailView):
-    model = Slot
+    model = core.models.Slot
     context_object_name = 'slot'
     template_name = 'core/slot.html'
     slug_field = 'id'
