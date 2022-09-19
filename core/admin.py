@@ -42,11 +42,15 @@ class ParticipantInline(admin.TabularInline):
 
     extra = 1
 
+    def get_queryset(self, request):
+        return super().get_queryset(request).with_person()
+
 
 class SlotInline(admin.TabularInline):
     model = core.models.Slot
     fields = ('category', 'person', 'start', 'duration', 'title', 'abstract', 'note')
     extra = 3
+    autocomplete_fields = ['person']
 
     formfield_overrides = {
         models.CharField: {
@@ -58,7 +62,7 @@ class SlotInline(admin.TabularInline):
     }
 
     def get_queryset(self, request):
-        return self.model.objects.prefetch_related('person')
+        return self.model.objects.prefetch_related('person', 'event')
 
 
 @admin.register(core.models.Participant)
