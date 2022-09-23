@@ -13,6 +13,16 @@
             <tr>
                 <td>
                     <a href="{% url 'participant' username=participant.username %}">{{ participant.get_natural_name }}</a>
+                    {% if participant.current_participation.0.online %}
+                        <abbr title="online">
+                            <span style="color: hsl(120, 100%, 40%);">&#x25CF;</span>
+                        </abbr>
+                    {% endif %}
+                    {% if participant.current_participation.0.organizer %}
+                        <abbr title="organizátor">
+                            <span style="color: hsl(240, 100%, 40%);">&#9733;</span>
+                        </abbr>
+                    {% endif %}
                 </td>
                 <td>
                     <span class="affiliation">

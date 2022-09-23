@@ -17,7 +17,11 @@ class ListView(django.views.generic.ListView):
 
     def get_queryset(self):
         year = self.kwargs['year']
-        return self.model.objects.for_event(year).with_current_affiliations(datetime.date.today()).order_by('last_name')
+        return self.model.objects \
+            .for_event(year) \
+            .with_current_affiliations(datetime.date.today()) \
+            .with_participation_for_event(year) \
+            .order_by('last_name')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

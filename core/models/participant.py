@@ -7,6 +7,7 @@ from django.contrib.auth.base_user import BaseUserManager
 from .slot import Slot
 from .event import Event
 from .affiliation import Affiliation
+from .participation import Participation
 from .institute import Institute
 
 
@@ -46,6 +47,15 @@ class ParticipantQuerySet(models.QuerySet):
                     (Q(affiliation__start__lte=date) | Q(affiliation__start=None)) & (Q(affiliation__end__gte=date) | Q(affiliation__end=None))
                 ).distinct(),
                 to_attr='current_affiliations',
+            ),
+        )
+
+    def with_participation_for_event(self, event_code):
+        return self.prefetch_related(
+            Prefetch(
+                'participations',
+                queryset=Participation.objects.filter(event__code=event_code),
+                to_attr='current_participation',
             ),
         )
 
