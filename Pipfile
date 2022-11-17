@@ -12,6 +12,7 @@ django = ">=4.1"
 uwsgi = "*"
 ipython = "*"
 django-debug-toolbar = "*"
+python-decouple = "*"
 
 [requires]
 python_version = "3.9"
