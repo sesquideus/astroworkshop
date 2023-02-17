@@ -298,10 +298,7 @@ ul.affiliation {
 
 td > ul.affiliation li {
     display: inline;
-    text-overflow: ellipsis;
 }
-
-li ~ li::before { content: " & "; }
 
 table {
     width: 100%;

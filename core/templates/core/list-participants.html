@@ -27,7 +27,7 @@
                 <td>
                     <ul class="affiliation">
                         {% for aff in participant.current_affiliations %}
-                            <li>{{ aff.institute.full_name }}</li>
+                            <li>{{ aff.institute.full_name }}</li>{% if not forloop.last %} &amp; {% endif %}
                         {% endfor %}
                     </ul>
                 </td>
