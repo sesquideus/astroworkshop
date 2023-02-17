@@ -9,11 +9,11 @@
         {% endif %}
     </h2>
     <div class="authors author">
-        <div class="affiliation">
-            {% for aff in participant.institutes.all %}
-                {{ aff.full_name }}
+        <ul class="affiliation">
+            {% for aff in participant.all_affiliations %}
+                <li>{{ aff.institute.full_name }} ({{ aff.start|date:"Y" }} &ndash; {{ aff.end|date:"Y"|default:"súčasnosť" }})</li>
             {% endfor %}
-        </div>
+        </ul>
     </div>
     <p>
         {{ participant.about }}
@@ -21,7 +21,7 @@
     {% regroup participant.talks by event as talks_by_event %}
     {% for event, talks in talks_by_event %}
         <h3>
-            {{ event }}
+            {{ event|default_if_none:"Nezaradené" }}
             {% if event.organizer %}
                 (organizátor)
             {% endif %}

@@ -25,11 +25,11 @@
                     {% endif %}
                 </td>
                 <td>
-                    <span class="affiliation">
+                    <ul class="affiliation">
                         {% for aff in participant.current_affiliations %}
-                            {{ aff.full_name }}
+                            <li>{{ aff.institute.full_name }}</li>
                         {% endfor %}
-                    </span>
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

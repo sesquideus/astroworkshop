@@ -1,4 +1,14 @@
 from django.db import models
+from django.db.models import Prefetch
+
+
+class AffiliationQuerySet(models.QuerySet):
+    def with_institute(self):
+        return self.prefetch_related(
+            Prefetch(
+                'institute'
+            )
+        )
 
 
 class Affiliation(models.Model):
@@ -6,6 +16,8 @@ class Affiliation(models.Model):
         ordering = ['start']
         verbose_name = 'afiliácia'
         verbose_name_plural = 'afiliácie'
+
+    objects = AffiliationQuerySet.as_manager()
 
     person = models.ForeignKey('Participant', on_delete=models.CASCADE, related_name='affiliation', verbose_name='osoba')
     institute = models.ForeignKey('Institute', on_delete=models.CASCADE, related_name='affiliation', verbose_name='inštitúcia')

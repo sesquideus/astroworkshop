@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os
 from pathlib import Path
-from decouple import config
+from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,11 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['158.195.84.177']
-INTERNAL_IPS = ['127.0.0.1', '192.168.248.128']
-
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv())
 
 # Application definition
 
@@ -134,9 +133,7 @@ LANGUAGE_CODE = 'sk-SK'
 TIME_ZONE = 'Europe/Bratislava'
 
 USE_I18N = True
-
 USE_L10N = False
-
 USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
@@ -156,7 +153,6 @@ STATIC_ROOT = '/var/www/astroworkshop/static/'
 MEDIA_ROOT = '/var/www/astroworkshop/media/'
 MEDIA_URL = '/files/'
 
-
 DATETIME_FORMAT = 'Y-m-d H:i'
 DATETIME_INPUT_FORMATS = [
     '%Y-%m-%d %H:%M:%S',
@@ -168,8 +164,6 @@ DATE_INPUT_FORMATS = ['%Y-%m-%d']
 LOGIN_REDIRECT_URL = '/'
 
 if os.environ.get('DJANGO_DEVELOPMENT'):
-    DEBUG = True
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-    ALLOWED_HOSTS = ['127.0.0.1', '192.168.153.128', '192.168.248.128']
-    INTERNAL_IPS = ['127.0.0.1', '192.168.248.128']
+    DEBUG_TOOLBAR_CONFIG = {
+        "SHOW_TOOLBAR_CALLBACK": lambda request: True,
+    }

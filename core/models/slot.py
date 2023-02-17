@@ -16,7 +16,7 @@ class SlotQuerySet(models.QuerySet):
         return self.prefetch_related(
             Prefetch(
                 'person',
-                queryset=Participant.objects.with_current_affiliations(F('people__slots__start')).with_full_name(),
+                queryset=Participant.objects.with_current_affiliations(F('start')).with_full_name(),
                 to_attr='people'
             )
         ).annotate(

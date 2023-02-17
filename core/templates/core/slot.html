@@ -31,11 +31,11 @@
                             {{ person.get_natural_name }}{% if not forloop.last %}, {% endif %}
                         {% endfor %}
                     </div>
-                    <div class="affiliation">
+                    <ul class="affiliation">
                         {% for aff in affs %}
-                            {{ aff.full_name }}<br />
+                            <li>{{ aff.full_name }}</li>
                         {% endfor %}
-                    </div>
+                    </ul>
                 </div>
             {% endfor %}
         {% endif %}

@@ -13,6 +13,7 @@ uwsgi = "*"
 ipython = "*"
 django-debug-toolbar = "*"
 python-decouple = "*"
+pytz = "*"
 
 [requires]
 python_version = "3.9"

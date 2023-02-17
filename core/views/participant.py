@@ -19,7 +19,7 @@ class ListView(django.views.generic.ListView):
         year = self.kwargs['year']
         return self.model.objects \
             .for_event(year) \
-            .with_current_affiliations(datetime.date.today()) \
+            .with_current_affiliations(Event.objects.get(code=year).start) \
             .with_participation_for_event(year) \
             .order_by('last_name')
 
@@ -40,4 +40,4 @@ class ParticipantView(django.views.generic.DetailView):
     slug_url_kwarg = 'username'
 
     def get_queryset(self):
-        return self.model.objects.with_talks().with_current_affiliations(datetime.date.today())
+        return self.model.objects.with_talks().with_all_affiliations()

@@ -16,7 +16,9 @@ class ParticipantQuerySet(models.QuerySet):
         return self.prefetch_related(
             Prefetch(
                 'slots',
-                queryset=Slot.objects.filter(Q(category=Slot.CATEGORY_TALK) | Q(category=Slot.CATEGORY_WORKSHOP)),
+                queryset=Slot.objects.filter(
+                    Q(category=Slot.CATEGORY_TALK) | Q(category=Slot.CATEGORY_WORKSHOP)
+                ).order_by('event__start'),
                 to_attr='talks',
             ),
         )
@@ -33,8 +35,8 @@ class ParticipantQuerySet(models.QuerySet):
     def with_all_affiliations(self):
         return self.prefetch_related(
             Prefetch(
-                'institutes',
-                queryset=Institute.objects.order_by('affiliation__start'),
+                'affiliation',
+                queryset=Affiliation.objects.order_by('start'),
                 to_attr='all_affiliations',
             )
         )
@@ -42,9 +44,9 @@ class ParticipantQuerySet(models.QuerySet):
     def with_current_affiliations(self, date):
         return self.prefetch_related(
             Prefetch(
-                'institutes',
-                queryset=Institute.objects.filter(
-                    (Q(affiliation__start__lte=date) | Q(affiliation__start=None)) & (Q(affiliation__end__gte=date) | Q(affiliation__end=None))
+                'affiliation',
+                queryset=Affiliation.objects.with_institute().filter(
+                    (Q(start__lte=date) | Q(start=None)) & (Q(end__gte=date) | Q(end=None))
                 ).distinct(),
                 to_attr='current_affiliations',
             ),

@@ -289,7 +289,7 @@ div.author div.name {
     font-style: italic;
 }
 
-div.author div.affiliation {
+ul.affiliation {
     width: 100%;
     color: hsl(0, 0%, 30%);
     font-style: italic;

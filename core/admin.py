@@ -82,7 +82,7 @@ class ParticipantAdmin(django.contrib.auth.admin.UserAdmin):
     list_participations.short_description = "zoznam účastí"
 
     def list_affiliations(self, obj):
-        return ', '.join([x.short_name for x in obj.all_affiliations])
+        return ', '.join([x.institute.short_name for x in obj.all_affiliations])
     list_affiliations.short_description = "zoznam afiliácií"
 
 
