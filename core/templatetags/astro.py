@@ -19,7 +19,7 @@ def at_least(limit, value):
 
 @register.filter(name='replace')
 def replace(string, args):
-    search  = args.split(args[0])[1]
-    replace = args.split(args[0])[2]
+    find = args.split(args[0])[1]
+    repl = args.split(args[0])[2]
 
-    return mark_safe(re.sub(search, replace, string))
+    return mark_safe(re.sub(find, repl, string))

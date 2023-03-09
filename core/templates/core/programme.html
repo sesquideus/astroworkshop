@@ -3,9 +3,9 @@
 
 {% block pagetitle %}
     <h2>
-        Program Astroworkshopu {{ event.code }}
+        Program Astroworkshopu {{ current_event.code }}
         {% if perms.core.change_event %}
-            <a class="admin" href="{% url 'admin:core_event_change' event.id %}">&#x270E;</a>
+            <a class="admin" href="{% url 'admin:core_event_change' current_event.id %}">&#x270E;</a>
         {% endif %}
     </h2>
 {% endblock pagetitle %}

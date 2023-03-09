@@ -59,6 +59,13 @@ div.header.year2022 {
     background-image: url("/static/images/banner-2022.png");
 }
 
+div.subhead {
+}
+
+div.subhead ul {
+
+}
+
 div.footer {
     height: 12mm;
     color: hsl(0, 0%, 50%);
@@ -69,15 +76,8 @@ span.name {
     color: hsl(0, 0%, 70%);
 }
 
-ul {
-}
-
-ul li {
-}
-
 ul.strip {
     height: 100%;
-    position: relative;
     padding: 0mm 5mm;
     list-style-type: none;
     list-style-position: outside;
@@ -96,6 +96,23 @@ ul.strip a.badge {
     display: block;
     float: right;
     padding-top: 3mm;
+}
+
+div.year-selector ul.strip {
+    background-color: hsl(0, 0%, 20%);
+    height: 9mm;
+}
+
+div.year-selector ul.strip li {
+    padding: 2mm 3mm;
+}
+
+div.year-selector ul.strip li a {
+    color: gray;
+}
+
+div.year-selector ul.strip li.active a {
+    color: white;
 }
 
 div.header div.title {

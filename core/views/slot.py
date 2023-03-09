@@ -5,6 +5,7 @@ from django.db.models import F, Q, ExpressionWrapper, Func, When, DateTimeField
 from django.db.models.functions import TruncDay
 
 import core
+from core.models import Event
 
 
 class ProgrammeView(django.views.generic.ListView):
@@ -13,7 +14,8 @@ class ProgrammeView(django.views.generic.ListView):
     template_name = 'core/programme.html'
 
     def get_queryset(self):
-        self.event = django.shortcuts.get_object_or_404(core.models.Event, code=self.kwargs.get('year', datetime.date.today().year))
+        self.event = django.shortcuts.get_object_or_404(core.models.Event,
+                                                        code=self.kwargs.get('year', datetime.date.today().year))
 
         return self.model.objects \
             .with_people() \
@@ -24,7 +26,9 @@ class ProgrammeView(django.views.generic.ListView):
             .order_by('start', 'duration')
 
     def get_context_data(self, **kwargs):
-        return super().get_context_data(**kwargs) | {'event': self.event}
+        return super().get_context_data(**kwargs) \
+            | {'current_event': self.event} \
+            | {'events': Event.objects.order_by('-code')}
 
 
 class DayProgrammeView(ProgrammeView):

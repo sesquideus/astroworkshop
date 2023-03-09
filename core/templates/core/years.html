@@ -1,0 +1,12 @@
+{% load static %}
+
+{% now "Y" as current_year %}
+<div class="bar year-selector">
+    <ul class="strip">
+        {% for event in events %}
+            <li class="{% if current_event.code == event.code %}active{% else %}inactive{% endif %}">
+                <a href="{% url 'programme' year=event.code %}">{{ event.code }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

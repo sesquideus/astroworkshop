@@ -1,14 +1,15 @@
+import datetime
+
 from django.db import models
 from django.db.models import Prefetch, F, Q, Value
 from django.db.models.functions import Concat
-from django.contrib.auth.models import AbstractUser, UserManager
+from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 
 from .slot import Slot
 from .event import Event
 from .affiliation import Affiliation
 from .participation import Participation
-from .institute import Institute
 
 
 class ParticipantQuerySet(models.QuerySet):
@@ -75,7 +76,7 @@ class ParticipantManager(BaseUserManager.from_queryset(ParticipantQuerySet)):
 
 class Participant(AbstractUser):
     """
-        Overrides the built-in Django User model and adds affiliations and workshop participations
+    Overrides the built-in Django User model and adds affiliations and workshop participations
     """
     class Meta:
         ordering = ['last_name', 'first_name']

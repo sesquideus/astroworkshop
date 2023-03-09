@@ -1,9 +1,6 @@
 import django
-import datetime
 import locale
 import unicodedata
-
-from functools import cmp_to_key
 
 from core.models import Participant, Event
 
@@ -28,7 +25,10 @@ class ListView(django.views.generic.ListView):
         context[self.context_object_name] = sorted(
             context[self.context_object_name], key=lambda x: unicodedata.normalize('NFKD', x.last_name)
         )
-        context['event'] = Event.objects.get(code=self.kwargs['year'])
+        context |= \
+            {'current_event': Event.objects.get(code=self.kwargs['year'])} | \
+            {'events': Event.objects.order_by('-code')}
+
         return context
 
 

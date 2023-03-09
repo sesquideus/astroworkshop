@@ -2,7 +2,7 @@ import unicodedata
 
 from django.apps import apps
 from django.db import models
-from django.db.models import Count, Prefetch, F, OuterRef
+from django.db.models import Count, Prefetch, F
 
 
 def presentation_filename(instance, filename):
@@ -16,12 +16,15 @@ class SlotQuerySet(models.QuerySet):
         return self.prefetch_related(
             Prefetch(
                 'person',
-                queryset=Participant.objects.with_current_affiliations(F('start')).with_full_name(),
-                to_attr='people'
+                queryset=Participant.objects \
+                    .with_current_affiliations(F("person__events__slots__start")) \
+                    .with_full_name(),
+                to_attr='people',
             )
         ).annotate(
-            people_count=Count('person')
+            people_count=Count('person'),
         )
+
 
 class Slot(models.Model):
     class Meta:
@@ -49,7 +52,8 @@ class Slot(models.Model):
     duration = models.PositiveIntegerField(null=False, verbose_name='dĺžka (min)')
     note = models.CharField(blank=True, max_length=256, verbose_name='poznámka')
     person = models.ManyToManyField('Participant', related_name='slots', blank=True, verbose_name='účastník')
-    event = models.ForeignKey('Event', null=True, blank=True, related_name='slots', on_delete=models.CASCADE, verbose_name='workshop')
+    event = models.ForeignKey('Event', null=True, blank=True, related_name='slots', on_delete=models.CASCADE,
+                              verbose_name='workshop')
     category = models.CharField(max_length=1, choices=CATEGORIES, default=CATEGORY_TALK, verbose_name='kategória')
     online = models.BooleanField(null=False, blank=False, default=False, verbose_name='online')
     presentation = models.FileField(

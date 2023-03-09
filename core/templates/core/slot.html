@@ -15,7 +15,7 @@
                     {{ slot.start|timezone:"Europe/Bratislava"|date:"l Y-m-d"|replace:"#-#&dash;" }}
                     {{ slot.start|timezone:"Europe/Bratislava"|date:"H:i" }}
                     {% if slot.start and slot.duration > 0 %}
-                        &ndash;&nbsp;{{ slot.start|add_minutes:slot.duration|timezone:"Europe/Bratislava"|time:"H:i" }}
+                        &ndash; {{ slot.start|add_minutes:slot.duration|timezone:"Europe/Bratislava"|time:"H:i" }}
                     {% endif %}
                 </span>
             </div>
@@ -33,7 +33,7 @@
                     </div>
                     <ul class="affiliation">
                         {% for aff in affs %}
-                            <li>{{ aff.full_name }}</li>
+                            <li>{{ aff.institute.full_name }}</li>
                         {% endfor %}
                     </ul>
                 </div>
