@@ -25,9 +25,14 @@ class ListView(django.views.generic.ListView):
         context[self.context_object_name] = sorted(
             context[self.context_object_name], key=lambda x: unicodedata.normalize('NFKD', x.last_name)
         )
+
+        events = Event.objects.order_by('-code')
+        if not self.request.user.is_staff:
+            events = events.only_visible()
+
         context |= \
             {'current_event': Event.objects.get(code=self.kwargs['year'])} | \
-            {'events': Event.objects.order_by('-code')}
+            {'events': events}
 
         return context
 

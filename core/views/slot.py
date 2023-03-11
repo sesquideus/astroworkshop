@@ -17,13 +17,18 @@ class ProgrammeView(django.views.generic.ListView):
         self.event = django.shortcuts.get_object_or_404(core.models.Event,
                                                         code=self.kwargs.get('year', datetime.date.today().year))
 
-        return self.model.objects \
+        qs = self.model.objects \
             .with_people() \
             .filter(event__code=self.event.code) \
             .annotate(
                 date=TruncDay('start'),
             ) \
             .order_by('start', 'duration')
+
+        if self.request.user.is_staff:
+            return qs.filter(event__visible=False)
+        else:
+            return qs.filter(event__visible=True)
 
     def get_context_data(self, **kwargs):
         return super().get_context_data(**kwargs) \
@@ -36,7 +41,8 @@ class DayProgrammeView(ProgrammeView):
 
     def get_queryset(self):
         return super().get_queryset().filter(
-            date=datetime.datetime(self.kwargs['year'], self.kwargs['month'], self.kwargs['day'], 0, 0, 0, tzinfo=pytz.utc)
+            date=datetime.datetime(self.kwargs['year'], self.kwargs['month'], self.kwargs['day'],
+                                   0, 0, 0, tzinfo=pytz.utc)
         )
 
 

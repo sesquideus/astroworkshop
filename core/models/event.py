@@ -24,6 +24,9 @@ class EventQuerySet(models.QuerySet):
             queryset=Participant.objects.with_current_affiliations(datetime.date.today()),
         ))
 
+    def only_visible(self):
+        return self.filter(visible=True)
+
 
 class Event(models.Model):
     class Meta:
@@ -37,6 +40,7 @@ class Event(models.Model):
     name = models.CharField(max_length=32, unique=True, verbose_name='názov')
     start = models.DateTimeField(verbose_name='začiatok')
     end = models.DateTimeField(verbose_name='koniec')
+    visible = models.BooleanField()
     pdf_programme = models.FileField(null=True, blank=True, upload_to=event_filename, verbose_name='program (PDF)')
 
     def __str__(self):
