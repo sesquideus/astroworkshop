@@ -4,6 +4,7 @@
 {% block pagetitle %}
     <h2>
         Program Astroworkshopu {{ current_event.code }}
+        {% if not current_event.visible %}(skryté){% endif %}
         {% if perms.core.change_event %}
             <a class="admin" href="{% url 'admin:core_event_change' current_event.id %}">&#x270E;</a>
         {% endif %}

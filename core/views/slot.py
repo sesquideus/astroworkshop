@@ -24,16 +24,12 @@ class ProgrammeView(django.views.generic.ListView):
                 date=TruncDay('start'),
             ) \
             .order_by('start', 'duration')
-
-        if self.request.user.is_staff:
-            return qs.filter(event__visible=False)
-        else:
-            return qs.filter(event__visible=True)
+        return qs
 
     def get_context_data(self, **kwargs):
         return super().get_context_data(**kwargs) \
             | {'current_event': self.event} \
-            | {'events': Event.objects.order_by('-code')}
+            | {'events': Event.objects.for_user(self.request.user).order_by('-code')}
 
 
 class DayProgrammeView(ProgrammeView):

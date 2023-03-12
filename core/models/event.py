@@ -10,6 +10,15 @@ def event_filename(instance, filename):
     return f"event/{instance.code}/programme.pdf"
 
 
+class EventManager(models.Manager):
+    def for_user(self, user):
+        qs = super().get_queryset()
+        if user.is_staff:
+            return qs
+        else:
+            return qs.only_visible()
+
+
 class EventQuerySet(models.QuerySet):
     def with_slots(self):
         return self.prefetch_related(Prefetch(
@@ -34,13 +43,13 @@ class Event(models.Model):
         verbose_name = 'workshop'
         verbose_name_plural = 'workshopy'
 
-    objects = EventQuerySet.as_manager()
+    objects = EventManager.from_queryset(EventQuerySet)()
 
     code = models.CharField(max_length=32, unique=True, verbose_name='kód')
     name = models.CharField(max_length=32, unique=True, verbose_name='názov')
     start = models.DateTimeField(verbose_name='začiatok')
     end = models.DateTimeField(verbose_name='koniec')
-    visible = models.BooleanField()
+    visible = models.BooleanField(verbose_name='viditeľnosť')
     pdf_programme = models.FileField(null=True, blank=True, upload_to=event_filename, verbose_name='program (PDF)')
 
     def __str__(self):

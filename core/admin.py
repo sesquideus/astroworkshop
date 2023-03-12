@@ -91,7 +91,7 @@ class SlotAdmin(admin.ModelAdmin):
     date_hierarchy = 'start'
     ordering = ['start']
 
-    list_display = ['title', 'people', 'start', 'duration', 'note', 'end', 'presentation']
+    list_display = ['title', 'category', 'people', 'start', 'duration', 'note', 'end', 'presentation']
     list_filter = ['event', 'category']
     filter_horizontal = ['person']
 
@@ -123,6 +123,7 @@ class SlotAdmin(admin.ModelAdmin):
 @admin.register(core.models.Event)
 class EventAdmin(admin.ModelAdmin):
     inlines = [SlotInline, ParticipantInline]
+    list_display = ['name', 'code', 'start', 'end', 'visible']
 
     def get_queryset(self, request):
         return self.model.objects.with_slots().with_participants()

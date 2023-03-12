@@ -25,4 +25,4 @@ class Affiliation(models.Model):
     end = models.DateField(null=True, blank=True, verbose_name='koniec')
 
     def __str__(self):
-        return f"{self.person} at {self.institute}"
+        return f"{self.person} na {self.institute}"
