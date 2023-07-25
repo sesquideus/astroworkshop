@@ -4,16 +4,16 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+ipython = "*"
 
 [packages]
 jinja2 = "*"
 pyyaml = "*"
 django = ">=4.1"
 uwsgi = "*"
-ipython = "*"
 django-debug-toolbar = "*"
 python-decouple = "*"
 pytz = "*"
 
 [requires]
-python_version = "3.9"
+python_version = "3.11"
