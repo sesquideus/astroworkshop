@@ -140,9 +140,9 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-STATIC_ROOT = '/var/www/astroworkshop/static/'
+STATIC_ROOT = '/var/www/aws/static/'
 
-MEDIA_ROOT = '/var/www/astroworkshop/media/'
+MEDIA_ROOT = '/var/www/aws/media/'
 MEDIA_URL = '/files/'
 
 DATETIME_FORMAT = 'Y-m-d H:i'
