@@ -31,9 +31,10 @@ class ProgrammeView(django.views.generic.ListView):
             return qs.filter(event__visible=True)
 
     def get_context_data(self, **kwargs):
-        return super().get_context_data(**kwargs) \
-            | {'current_event': self.event} \
-            | {'events': Event.objects.for_user(self.request.user).order_by('-code')}
+        return super().get_context_data(**kwargs) | {
+            'current_event': self.event,
+            'events': Event.objects.for_user(self.request.user).order_by('-code'),
+        }
 
 
 class DayProgrammeView(ProgrammeView):

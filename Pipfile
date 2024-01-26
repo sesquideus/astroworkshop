@@ -9,7 +9,7 @@ ipython = "*"
 [packages]
 jinja2 = "*"
 pyyaml = "*"
-django = ">=5.0"
+django = ">=4.2,<5.0"
 uwsgi = ">=2.0.22"
 django-debug-toolbar = "*"
 python-decouple = "*"

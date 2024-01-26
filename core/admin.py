@@ -139,4 +139,3 @@ admin.site.unregister(Group)
 @admin.register(Group)
 class NewGroupAdmin(GroupAdmin):
     list_display = ['name']
-    filter_horizontal = ['permissions', 'user']

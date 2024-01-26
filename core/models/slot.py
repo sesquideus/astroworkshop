@@ -17,7 +17,7 @@ class SlotQuerySet(models.QuerySet):
             Prefetch(
                 'person',
                 queryset=Participant.objects.
-                    with_current_affiliations(F("person__events__slots__start")).
+                    with_current_affiliations(F("start")).
                     with_full_name(),
                 to_attr='people',
             )
