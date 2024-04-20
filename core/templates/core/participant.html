@@ -37,4 +37,22 @@
         {% endfor %}
         </ul>
     {% endfor %}
+
+
+    <h3>
+        Spolu sa zúčastnil/a na {{ participant.total_participations }} Astroworkshopoch:
+    </h3>
+        <ul>
+            {% for participation in participant.participations.all %}
+                <li>
+                    {{ participation.event }}
+                    {% if participation.organizer %}
+                        (organizátor)
+                    {% endif %}
+                    {% if par.online %}
+                        (online)
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
 {% endblock %}

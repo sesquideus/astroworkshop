@@ -76,6 +76,11 @@ span.name {
     color: hsl(0, 0%, 70%);
 }
 
+div.name a {
+    text-decoration: none;
+    color: black;
+}
+
 ul.strip {
     height: 100%;
     padding: 0mm 5mm;
@@ -415,12 +420,29 @@ span.empty {
     font-style: italic;
 }
 
-p.abstract {
+div.abstract {
     padding-top: 0mm;
     padding-bottom: 3mm;
 }
 
+div.abstract ul {
+    padding: 0.5em 0;
+}
+
+div.abstract li {
+    list-style: inside circle;
+    padding-left: 1em;
+}
+
+div.abstract code {
+    font-family: monospace;
+}
+
+div.abstract em {
+    font-style: italic;
+}
+
 a.admin {
     text-decoration: none;
-    text-color: inherit;
+    color: inherit;
 }

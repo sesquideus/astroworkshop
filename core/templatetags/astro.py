@@ -1,3 +1,4 @@
+import subprocess
 import datetime
 import re
 
@@ -23,3 +24,12 @@ def replace(string, args):
     repl = args.split(args[0])[2]
 
     return mark_safe(re.sub(find, repl, string))
+
+
+@register.filter
+def pandoc(text: str) -> str:
+    text = text.encode('utf-8')
+    completed = subprocess.run(["pandoc", '--to', 'html'], input=text, capture_output=True)
+    return completed.stdout.decode('utf-8')
+
+

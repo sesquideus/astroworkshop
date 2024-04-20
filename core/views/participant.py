@@ -45,4 +45,5 @@ class ParticipantView(django.views.generic.DetailView):
     slug_url_kwarg = 'username'
 
     def get_queryset(self):
-        return self.model.objects.with_talks().with_all_affiliations()
+        return self.model.objects.with_talks().with_all_affiliations().with_participations()
+

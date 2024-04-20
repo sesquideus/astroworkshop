@@ -1,7 +1,7 @@
 import datetime
 
 from django.db import models
-from django.db.models import Prefetch, F, Q, Value
+from django.db.models import Prefetch, F, Q, Value, Count
 from django.db.models.functions import Concat
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
@@ -61,6 +61,13 @@ class ParticipantQuerySet(models.QuerySet):
                 to_attr='current_participation',
             ),
         )
+
+    def with_participations(self):
+        return self.prefetch_related(
+            Prefetch(
+                'participations',
+            ),
+        ).annotate(total_participations=Count('participations'))
 
     def for_event(self, event_code):
         return self.filter(events__code=event_code)

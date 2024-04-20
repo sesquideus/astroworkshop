@@ -28,7 +28,9 @@
                 <div class="author">
                     <div class="name">
                         {% for person in people %}
-                            {{ person.get_natural_name }}{% if not forloop.last %}, {% endif %}
+                            <a href="{% url 'participant' person.username %}">
+                                {{ person.get_natural_name }}
+                            </a>{% if not forloop.last %}, {% endif %}
                         {% endfor %}
                     </div>
                     <ul class="affiliation">
@@ -40,9 +42,9 @@
             {% endfor %}
         {% endif %}
     </div>
-    <p class="abstract">
+    <div class="abstract">
         {% if slot.abstract %}
-            {{ slot.abstract|replace:"#\n#<br />" }}
+            {{ slot.abstract|pandoc|safe }}
         {% else %}
             {% if slot.category == slot.CATEGORY_TALK %}
                 <span class="empty">
@@ -50,7 +52,7 @@
                 </span>
             {% endif %}
         {% endif %}
-    </p>
+    </div>
     {% if slot.presentation %}
         <p>
             <a href="{{ slot.presentation.url }}" target="_blank">prezentácia</a>
