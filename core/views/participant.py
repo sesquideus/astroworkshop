@@ -31,8 +31,10 @@ class ListView(django.views.generic.ListView):
             events = events.only_visible()
 
         context |= \
-            {'current_event': Event.objects.get(code=self.kwargs['year'])} | \
-            {'events': events}
+            {
+                'current_event': Event.objects.get(code=self.kwargs['year']),
+                'events': events
+            }
 
         return context
 
@@ -46,4 +48,9 @@ class ParticipantView(django.views.generic.DetailView):
 
     def get_queryset(self):
         return self.model.objects.with_talks().with_all_affiliations().with_participations()
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs) | {
+            'events': Event.objects.for_user(self.request.user).order_by('-code'),
+        }
 

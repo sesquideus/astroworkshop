@@ -425,12 +425,19 @@ div.abstract {
     padding-bottom: 3mm;
 }
 
+div.abstract ul, div.abstract ol {
+    padding-bottom: 1em;
+}
+
 div.abstract ul {
-    padding: 0.5em 0;
+    list-style: inside circle;
+}
+
+div.abstract ol {
+    list-style: inside decimal;
 }
 
 div.abstract li {
-    list-style: inside circle;
     padding-left: 1em;
 }
 

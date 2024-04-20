@@ -22,7 +22,7 @@
                     {% else %}
                         <a href="{% url 'programme-day' day.year day.month day.day %}">
                             <span class="dow">{{ day|date:"l" }}</span>
-                            <span class="ymd">{{ day|date:"Y-m-d"|replace:"#-#&dash;" }}
+                            <span class="ymd">{{ day|date:"Y-m-d"|replace:"#-#&dash;" }}</span>
                         </a>
                     {% endif %}
                 </th>

@@ -47,7 +47,8 @@ class ParticipantQuerySet(models.QuerySet):
             Prefetch(
                 'affiliation',
                 queryset=Affiliation.objects.with_institute().filter(
-                    (Q(start__lte=date) | Q(start=None)) & (Q(end__gte=date) | Q(end=None))
+                    Q(start__lte=date) | Q(start=None),
+                    Q(end__gte=date) | Q(end=None)
                 ).distinct(),
                 to_attr='current_affiliations',
             ),

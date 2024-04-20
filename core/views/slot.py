@@ -8,7 +8,14 @@ import core
 from core.models import Event
 
 
-class ProgrammeView(django.views.generic.ListView):
+class ViewWithEvents(django.views.generic.View):
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs) | {
+            'events': Event.objects.for_user(self.request.user).order_by('-code'),
+        }
+
+
+class ProgrammeView(ViewWithEvents, django.views.generic.ListView):
     model = core.models.Slot
     context_object_name = 'slots'
     template_name = 'core/programme.html'
@@ -33,7 +40,6 @@ class ProgrammeView(django.views.generic.ListView):
     def get_context_data(self, **kwargs):
         return super().get_context_data(**kwargs) | {
             'current_event': self.event,
-            'events': Event.objects.for_user(self.request.user).order_by('-code'),
         }
 
 
@@ -47,7 +53,7 @@ class DayProgrammeView(ProgrammeView):
         )
 
 
-class SlotView(django.views.generic.DetailView):
+class SlotView(ViewWithEvents, django.views.generic.DetailView):
     model = core.models.Slot
     context_object_name = 'slot'
     template_name = 'core/slot.html'
@@ -58,5 +64,6 @@ class SlotView(django.views.generic.DetailView):
         return self.model.objects.with_people()
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+        return super().get_context_data(**kwargs) | {
+            'current_event': self.object.event,
+        }
