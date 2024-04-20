@@ -14,6 +14,7 @@ uwsgi = ">=2.0.22"
 django-debug-toolbar = "*"
 python-decouple = "*"
 pytz = "*"
+sqlparse = ">=0.5.0"
 
 [requires]
 python_version = "3.11"
