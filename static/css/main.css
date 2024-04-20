@@ -442,6 +442,10 @@ div.abstract em {
     font-style: italic;
 }
 
+div.abstract p {
+    padding-bottom: 1em;
+}
+
 a.admin {
     text-decoration: none;
     color: inherit;
