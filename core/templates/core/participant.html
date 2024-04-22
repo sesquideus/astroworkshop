@@ -16,42 +16,37 @@
         </ul>
     </div>
     <p>
-        {{ participant.about }}
+        {{ participant.about|pandoc|safe }}
     </p>
     {% regroup participant.talks by event as talks_by_event %}
-    {% for event, talks in talks_by_event %}
-        <h3>
-            {{ event|default_if_none:"Nezaradené" }}
-            {% if event.organizer %}
-                (organizátor)
-            {% endif %}
-            {% if par.online %}
-                (online)
-            {% endif %}
-        </h3>
-        <ul>
-        {% for talk in talks %}
-            <li>
-                <a href="{% url 'slot' talk.id %}">{{ talk.title }}</a>
-            </li>
-        {% endfor %}
-        </ul>
-    {% endfor %}
-
 
     <h3>
-        Spolu sa zúčastnil/a na {{ participant.total_participations }} Astroworkshopoch:
+        Zúčastnil/a sa na {{ participant.total_participations }}
+        Astroworkshop{{ participant.total_participations|pluralize:"e,och" }}:
     </h3>
-        <ul>
+        <ul class="participations">
             {% for participation in participant.participations.all %}
                 <li>
-                    {{ participation.event }}
-                    {% if participation.organizer %}
-                        (organizátor)
-                    {% endif %}
-                    {% if par.online %}
-                        (online)
-                    {% endif %}
+                    <h4>
+                        {{ participation.event }}
+                        {% if participation.organizer %}
+                            (organizátor)
+                        {% endif %}
+                        {% if par.online %}
+                            (online)
+                        {% endif %}
+                    </h4>
+                    {% for event, talks in talks_by_event %}
+                        {% if event.code == participation.event.code %}
+                            <ul class="talks">
+                                {% for talk in talks %}
+                                    <li>
+                                        <a href="{% url 'slot' talk.id %}">{{ talk.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
                 </li>
             {% endfor %}
         </ul>

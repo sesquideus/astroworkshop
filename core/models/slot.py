@@ -26,6 +26,9 @@ class SlotQuerySet(models.QuerySet):
             people_count=Count('person'),
         )
 
+    def with_event(self):
+        return self.select_related('event')
+
 
 class Slot(models.Model):
     class Meta:

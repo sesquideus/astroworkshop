@@ -457,3 +457,21 @@ a.admin {
     text-decoration: none;
     color: inherit;
 }
+
+ul.participations {
+    list-style: inside '\2605';
+}
+
+ul.participations h4 {
+    display: inline-block;
+}
+
+ul.talks {
+    list-style: inside '→';
+    margin-bottom: 1em;
+    padding-left: 1em;
+}
+
+ul.participations > li + li {
+    margin-top: 0.5em;
+}

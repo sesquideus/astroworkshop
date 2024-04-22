@@ -19,7 +19,7 @@ class ParticipantQuerySet(models.QuerySet):
                 'slots',
                 queryset=Slot.objects.filter(
                     Q(category=Slot.CATEGORY_TALK) | Q(category=Slot.CATEGORY_WORKSHOP)
-                ).order_by('event__start'),
+                ).order_by('event__start').with_event(),
                 to_attr='talks',
             ),
         )
@@ -37,7 +37,7 @@ class ParticipantQuerySet(models.QuerySet):
         return self.prefetch_related(
             Prefetch(
                 'affiliation',
-                queryset=Affiliation.objects.order_by('start'),
+                queryset=Affiliation.objects.order_by('start').select_related('institute'),
                 to_attr='all_affiliations',
             )
         )
@@ -67,6 +67,7 @@ class ParticipantQuerySet(models.QuerySet):
         return self.prefetch_related(
             Prefetch(
                 'participations',
+                queryset=Participation.objects.prefetch_related('event')
             ),
         ).annotate(total_participations=Count('participations'))
 
@@ -93,16 +94,8 @@ class Participant(AbstractUser):
 
     objects = ParticipantManager()
 
-    institutes = models.ManyToManyField(
-        'Institute',
-        through='Affiliation',
-        related_name = 'people',
-    )
-    events = models.ManyToManyField(
-        'Event',
-        through='Participation',
-        related_name = 'participants',
-    )
+    institutes = models.ManyToManyField('Institute', through='Affiliation', related_name='people')
+    events = models.ManyToManyField('Event', through='Participation', related_name='participants')
     about = models.TextField(blank=True)
 
     def __str__(self):
