@@ -42,14 +42,15 @@ class ParticipantQuerySet(models.QuerySet):
             )
         )
 
-    def with_current_affiliations(self, date):
+    def with_current_affiliations(self, date: datetime.date = None):
+        date = date or datetime.date.today()
         return self.prefetch_related(
             Prefetch(
                 'affiliation',
                 queryset=Affiliation.objects.with_institute().filter(
-                    Q(start__lte=date) | Q(start=None),
-                    Q(end__gte=date) | Q(end=None)
-                ).distinct(),
+                    Q(start__lte=date) | Q(start__isnull=True),
+                    Q(end__gte=date) | Q(end__isnull=True)
+                ),
                 to_attr='current_affiliations',
             ),
         )

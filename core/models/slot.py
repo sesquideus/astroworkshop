@@ -3,7 +3,7 @@ import datetime
 
 from django.apps import apps
 from django.db import models
-from django.db.models import Count, Prefetch, F, Subquery, OuterRef
+from django.db.models import Count, Prefetch, F, Q, Subquery, OuterRef, Min
 
 
 def presentation_filename(instance, filename):
@@ -17,9 +17,7 @@ class SlotQuerySet(models.QuerySet):
         return self.prefetch_related(
             Prefetch(
                 'person',
-                queryset=Participant.objects.
-                    with_current_affiliations(F("start")).
-                    with_full_name(),
+                queryset=Participant.objects.with_full_name().with_current_affiliations(F('start')),
                 to_attr='people',
             )
         ).annotate(

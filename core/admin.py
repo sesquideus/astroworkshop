@@ -131,6 +131,9 @@ class EventAdmin(admin.ModelAdmin):
 
 @admin.register(core.models.Affiliation)
 class AffiliationAdmin(admin.ModelAdmin):
+    list_display = ['person', 'start', 'end']
+    ordering = ['person', 'start']
+
     def get_queryset(self, request):
         return self.model._default_manager.prefetch_related('person', 'institute')
 

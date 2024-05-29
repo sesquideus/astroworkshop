@@ -35,7 +35,7 @@
                     </div>
                     <ul class="affiliation">
                         {% for aff in affs %}
-                            <li>{{ aff.institute.full_name }}</li>
+                            <li>{{ aff.institute.full_name }} ({{ aff.start|date:"Y" }} &ndash; {{ aff.end|date:"Y"|default:"súčasnosť" }})</li>
                         {% endfor %}
                     </ul>
                 </div>

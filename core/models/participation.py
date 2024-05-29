@@ -9,6 +9,7 @@ class ParticipationQuerySet(models.QuerySet):
 class Participation(models.Model):
     class Meta:
         ordering = ['event', 'person']
+        unique_together = (('event', 'person'),)
 
     objects = ParticipationQuerySet.as_manager()
 
@@ -19,4 +20,5 @@ class Participation(models.Model):
 
     def __str__(self):
         online = " [online]" if self.online else ""
-        return f"{self.person} at {self.event}{online}"
+        org = " [org]" if self.organizer else ""
+        return f"{self.person} at {self.event}{org}{online}"
