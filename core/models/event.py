@@ -1,7 +1,7 @@
 import datetime
 from django.apps import apps
 from django.db import models
-from django.db.models import Prefetch
+from django.db.models import F, Prefetch
 
 from . import Slot
 
@@ -30,7 +30,7 @@ class EventQuerySet(models.QuerySet):
         Participant = apps.get_model('core.Participant')
         return self.prefetch_related(Prefetch(
             'participants',
-            queryset=Participant.objects.with_current_affiliations(datetime.date.today()),
+            queryset=Participant.objects.with_current_affiliations(F('start')),
         ))
 
     def only_visible(self):

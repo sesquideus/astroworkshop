@@ -23,6 +23,6 @@ import core.urls
 
 urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [
     path('__debug__/', include(debug_toolbar.urls)),
-    path('admin/', admin.site.urls),
+    path(r'admin/', admin.site.urls),
     path('', include(core.urls)),
 ]

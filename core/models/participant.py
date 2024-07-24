@@ -1,8 +1,9 @@
 import datetime
 
 from django.db import models
-from django.db.models import Prefetch, F, Q, Value, Count
+from django.db.models import Prefetch, Q, Value, Count
 from django.db.models.functions import Concat
+from django.contrib import admin
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 
@@ -102,10 +103,10 @@ class Participant(AbstractUser):
     def __str__(self):
         return f"{self.last_name}, {self.first_name}"
 
+    @admin.display(description="celé meno")
     def get_full_name(self):
         return f"{self.last_name}, {self.first_name}"
-    get_full_name.short_description = 'celé meno'
 
+    @admin.display(description="meno")
     def get_natural_name(self):
         return f"{self.first_name} {self.last_name}"
-

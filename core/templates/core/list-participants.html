@@ -4,7 +4,7 @@
 {% block page %}
     <h2>
         Zoznam účastníkov Astroworkshopu {{ event.code }} ({{ participants|length }} ks)
-        {% if perms.core.change_affiliation %}
+        {% if perms.core.change_event %}
             <a class="admin" href="{% url 'admin:core_event_change' current_event.id %}">&#x270E;</a>
         {% endif %}
     </h2>

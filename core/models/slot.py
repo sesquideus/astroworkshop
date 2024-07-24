@@ -1,6 +1,7 @@
 import unicodedata
 import datetime
 
+import pytz
 from django.apps import apps
 from django.db import models
 from django.db.models import Count, Prefetch, F, Q, Subquery, OuterRef, Min
@@ -67,7 +68,7 @@ class Slot(models.Model):
     video = models.URLField(max_length=100, null=True, blank=True, verbose_name='URL videa')
 
     def __str__(self):
-        return f"{self.title} ({self.start})"
+        return f"{self.title} ({self.start.astimezone(pytz.timezone('Europe/Bratislava')).strftime('%Y-%m-%d %H:%M %Z')})"
 
     def sorted_authors(self):
         return sorted(

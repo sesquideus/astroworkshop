@@ -13,7 +13,7 @@ class Participation(models.Model):
 
     objects = ParticipationQuerySet.as_manager()
 
-    event = models.ForeignKey('Event', on_delete=models.CASCADE, null=False)
+    event = models.ForeignKey('Event', on_delete=models.CASCADE, null=False, related_name='participations')
     person = models.ForeignKey('Participant', on_delete=models.CASCADE, null=False, related_name='participations')
     online = models.BooleanField(null=False, blank=False, default=False)
     organizer = models.BooleanField(null=False, blank=False, default=False)
