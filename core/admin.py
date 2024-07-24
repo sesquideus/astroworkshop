@@ -15,7 +15,10 @@ import datetime
 
 @admin.register(core.models.Institute)
 class InstituteAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['short_name', 'full_name']
+    ordering = ['short_name', 'full_name']
+
+
 
 
 class AffiliationInline(admin.TabularInline):
@@ -131,7 +134,7 @@ class EventAdmin(admin.ModelAdmin):
 
 @admin.register(core.models.Affiliation)
 class AffiliationAdmin(admin.ModelAdmin):
-    list_display = ['person', 'start', 'end']
+    list_display = ['person', 'institute', 'start', 'end']
     ordering = ['person', 'start']
 
     def get_queryset(self, request):

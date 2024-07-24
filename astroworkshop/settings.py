@@ -122,10 +122,10 @@ AUTH_USER_MODEL = 'core.Participant'
 
 LANGUAGE_CODE = 'sk-SK'
 
+FORMAT_MODULE_PATH = 'astroworkshop.formats'
 TIME_ZONE = 'Europe/Bratislava'
 
 USE_I18N = True
-USE_L10N = False
 USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
